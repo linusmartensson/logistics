@@ -1,2 +1,0 @@
-# logistics
-### a Sails application
