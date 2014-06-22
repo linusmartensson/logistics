@@ -19,7 +19,7 @@
 var config = {
   appName: 'Geddy App'
 , detailedErrors: false
-, hostname: null
+, hostname: "http://logistics-env-27fmmzstfv.elasticbeanstalk.com/"
 , port: 4000
 , model: {
     defaultAdapter: 'mysql'
