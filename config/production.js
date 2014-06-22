@@ -22,16 +22,14 @@ var config = {
 , hostname: null
 , port: 4000
 , model: {
-    defaultAdapter: 'mongo'
+    defaultAdapter: 'mysql'
   }
 , db: {
-    mongo: {
-      username: null
-    , dbname: 'production'
-    , prefix: null
-    , password: null
-    , host: 'localhost'
-    , port: 27017
+    mysql: {
+      host: process.env.RDS_HOSTNAME,
+      user: process.env.RDS_USERNAME,
+      password: process.env.RDS_PASSWORD,
+      port: process.env.RDS_PORT
     }
   }
 
