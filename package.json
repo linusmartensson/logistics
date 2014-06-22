@@ -3,7 +3,13 @@
   "version": "0.0.1",
   "author": "",
   "dependencies": {
-    "geddy": "0.12.x"
+    "geddy": "0.12.x",
+    "jake": "0.5.x",
+    "passport": "0.1.x",
+    "passport-twitter": "0.1.x",
+    "passport-facebook": "0.1.x",
+    "passport-yammer": "0.1.x",
+    "bcrypt": "0.7.x"
   },
   "devDependencies": {},
   "engines": {
