@@ -15,22 +15,25 @@
  * limitations under the License.
  *
 */
-
 var config = {
-  appName: 'Geddy App (development)'
+, fullHostname: "http://logistics-env-27fmmzstfv.elasticbeanstalk.com/"
+, model: {
+    defaultAdapter: 'mysql'
+  }
+, db: {
+    mysql: {
+      host: process.env.RDS_HOSTNAME,
+      database: process.env.RDS_DB_NAME,
+      user: process.env.RDS_USERNAME,
+      password: process.env.RDS_PASSWORD,
+      port: process.env.RDS_PORT
+    }
+  }
+, appName: 'Geddy App (development)'
 , detailedErrors: true
 , debug: true
 , hostname: null
 , port: 4000
-, model: {
-    defaultAdapter: 'filesystem'
-  }
-, sessions: {
-    store: 'filesystem'
-  , filename: '_session_store.json'
-  , key: 'sid'
-  , expiry: 14 * 24 * 60 * 60
-  }
 };
 
 module.exports = config;
