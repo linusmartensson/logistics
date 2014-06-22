@@ -16,7 +16,7 @@
  *
 */
 var config = {
-, fullHostname: "http://logistics-env-27fmmzstfv.elasticbeanstalk.com/"
+  fullHostname: "http://logistics-env-27fmmzstfv.elasticbeanstalk.com/"
 , model: {
     defaultAdapter: 'mysql'
   }
