@@ -1,0 +1,19 @@
+<div class="hero-unit">
+  <h2>All Orders</h2>
+  <%- linkTo('Create a new Order', addOrderPath, {class: 'btn pull-right'}); %>
+</div>
+
+<div id="orders-list">
+<% if (orders) { %>
+<% for (var i = 0, ii = orders.length; i < ii; i++) { %>
+  <div class="row list-item" id="order-<%= orders[i].id; %>">
+    <div class="span8">
+      <h3><%- linkTo(orders[i].id, orderPath(orders[i].id)); %></h3>
+    </div>
+    <div class="span4">
+      <h3><i class="icon-list-alt"></i><%= orders[i].id; %></h3>
+    </div>
+  </div>
+<% } %>
+<% } %>
+</div>

@@ -1,0 +1,26 @@
+<div class="control-group">
+  <label for="name" class="control-label">name</label>
+  <div class="controls">
+    <%- contentTag('input', place.name, {type:'text', class:'span6', name:'name'}) %>
+  </div>
+</div>
+<div class="control-group">
+  <label for="location" class="control-label">location</label>
+  <div class="controls">
+    <%- contentTag('input', place.location, {type:'text', class:'span6', name:'location'}) %>
+  </div>
+</div>
+<div class="control-group">
+  <label for="internal" class="control-label">internal</label>
+  <div class="controls">
+    <select name="internal", class="span1">
+      <% if(place.internal) { -%>
+      <option>false</option>
+      <option selected>true</option>
+      <% } else { -%>
+      <option selected>false</option>
+      <option>true</option>
+      <% } -%>
+    </select>
+  </div>
+</div>

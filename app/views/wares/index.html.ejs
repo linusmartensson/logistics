@@ -1,0 +1,19 @@
+<div class="hero-unit">
+  <h2>All Wares</h2>
+  <%- linkTo('Create a new Ware', addWarePath, {class: 'btn pull-right'}); %>
+</div>
+
+<div id="wares-list">
+<% if (wares) { %>
+<% for (var i = 0, ii = wares.length; i < ii; i++) { %>
+  <div class="row list-item" id="ware-<%= wares[i].id; %>">
+    <div class="span8">
+      <h3><%- linkTo(wares[i].name, warePath(wares[i].id)); %></h3>
+    </div>
+    <div class="span4">
+      <h3><i class="icon-list-alt"></i><%= wares[i].id; %></h3>
+    </div>
+  </div>
+<% } %>
+<% } %>
+</div>

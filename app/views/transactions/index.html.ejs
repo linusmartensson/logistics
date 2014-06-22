@@ -1,0 +1,19 @@
+<div class="hero-unit">
+  <h2>All Transactions</h2>
+  <%- linkTo('Create a new Transaction', addTransactionPath, {class: 'btn pull-right'}); %>
+</div>
+
+<div id="transactions-list">
+<% if (transactions) { %>
+<% for (var i = 0, ii = transactions.length; i < ii; i++) { %>
+  <div class="row list-item" id="transaction-<%= transactions[i].id; %>">
+    <div class="span8">
+      <h3><%- linkTo(transactions[i].id, transactionPath(transactions[i].id)); %></h3>
+    </div>
+    <div class="span4">
+      <h3><i class="icon-list-alt"></i><%= transactions[i].id; %></h3>
+    </div>
+  </div>
+<% } %>
+<% } %>
+</div>
