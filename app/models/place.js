@@ -6,6 +6,8 @@ var Place = function () {
     internal: {type: 'boolean'}
   });
 
+  this.hasMany('Transactions');
+
   /*
   this.property('login', 'string', {required: true});
   this.property('password', 'string', {required: true});

@@ -7,6 +7,12 @@ var Order = function () {
     status: {type: 'string'}
   });
 
+  this.hasOne('Wares');
+  this.hasOne('Place');
+  this.belongsTo('Creator', {model:'User'});
+  this.belongsTo('Executor', {model:'User'});
+  
+
   /*
   this.property('login', 'string', {required: true});
   this.property('password', 'string', {required: true});
