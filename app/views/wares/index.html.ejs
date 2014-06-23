@@ -7,23 +7,23 @@
 <% if (wares) { %>
 <% for (var i = 0, ii = wares.length; i < ii; i++) { %>
   <div class="row list-item" id="ware-<%= wares[i].id; %>">
-    <div class="span3">
+    <div class="span4">
       <h3><%- linkTo(wares[i].name, warePath(wares[i].id)); %></h3>
     </div>
     <div class="span2">
-      <h3><%- linkTo(wares[i].orderno, warePath(wares[i].id)); %></h3>
+      <h4><%- linkTo(wares[i].orderno, warePath(wares[i].id)); %></h3>
     </div>
     <div class="span2">
-      <h3><%- linkTo(wares[i].packaging, warePath(wares[i].id)); %></h3>
+      <h4><%- linkTo(wares[i].packaging, warePath(wares[i].id)); %></h3>
     </div>
     <div class="span2">
-      <h3><%- linkTo(wares[i].price, warePath(wares[i].id)); %></h3>
+      <h4><%- linkTo(wares[i].price, warePath(wares[i].id)); %></h3>
     </div>
     <div class="span2">
-      <h3><%- linkTo(wares[i].storage, warePath(wares[i].id)); %></h3>
+      <h4><%- linkTo(wares[i].storage, warePath(wares[i].id)); %></h3>
     </div>
-    <div class="span2">
-      <h3><%- linkTo(wares[i].position, warePath(wares[i].id)); %></h3>
+    <div class="span4">
+      <h4><%- linkTo(wares[i].position, warePath(wares[i].id)); %></h3>
     </div>
   </div>
 <% } %>
