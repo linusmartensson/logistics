@@ -1,19 +1,21 @@
 var UpdateTransactions = function () {
   this.up = function (next) {
-    this.addColumn('transaction','placeId', 'int', function(err, data){
-       this.addColumn('transaction','wareId', 'int',function(err, data){
-         this.addColumn('transaction','creatorId', 'int', function(err, data){
-           this.addColumn('transaction','pairId', 'int', function(err, data){next();});
+    var tt = this;
+    tt.addColumn('transactions','placeId', 'int', function(err, data){
+       tt.addColumn('transactions','wareId', 'int',function(err, data){
+         tt.addColumn('transactions','creatorId', 'int', function(err, data){
+           tt.addColumn('transactions','pairId', 'int', function(err, data){next();});
          });
        });
     });
   };
 
   this.down = function (next) {
-    this.removeColumn('transaction','placeId',  function(err, data){
-       this.removeColumn('transaction','wareId', function(err, data){
-         this.removeColumn('transaction','creatorId', function(err, data){
-           this.removeColumn('transaction','pairId', function(err, data){next();});
+    var tt = this;
+    tt.removeColumn('transactions','placeId',  function(err, data){
+       tt.removeColumn('transactions','wareId', function(err, data){
+         tt.removeColumn('transactions','creatorId', function(err, data){
+           tt.removeColumn('transactions','pairId', function(err, data){next();});
         });
       });
     });

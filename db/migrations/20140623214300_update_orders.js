@@ -1,9 +1,10 @@
 var UpdateOrders = function () {
   this.up = function (next) {
-    this.addColumn('order','placeId', 'int', function(err, data){
-       this.addColumn('order','wareId', 'int',function(err, data){
-         this.addColumn('order','creatorId', 'int', function(err, data){
-         this.addColumn('order','executorId', 'int', function(err, data){
+    var tt = this;
+    tt.addColumn('orders','placeId', 'int', function(err, data){
+       tt.addColumn('orders','wareId', 'int',function(err, data){
+         tt.addColumn('orders','creatorId', 'int', function(err, data){
+         tt.addColumn('orders','executorId', 'int', function(err, data){
           next();
          });
          });
@@ -12,10 +13,11 @@ var UpdateOrders = function () {
   };
 
   this.down = function (next) {
-    this.removeColumn('order','placeId',  function(err, data){
-       this.removeColumn('order','wareId', function(err, data){
-         this.removeColumn('order','creatorId', function(err, data){
-         this.removeColumn('order','executorId', function(err, data){
+    var tt = this;
+    tt.removeColumn('orders','placeId',  function(err, data){
+       tt.removeColumn('orders','wareId', function(err, data){
+         tt.removeColumn('orders','creatorId', function(err, data){
+         tt.removeColumn('orders','executorId', function(err, data){
           next();
         });
         });
