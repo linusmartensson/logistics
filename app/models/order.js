@@ -7,7 +7,7 @@ var Order = function () {
     status: {type: 'string'}
   });
 
-  this.hasOne('Wares');
+  this.hasOne('Ware');
   this.hasOne('Place');
   this.belongsTo('Creator', {model:'User'});
   this.belongsTo('Executor', {model:'User'});
