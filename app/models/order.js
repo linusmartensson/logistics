@@ -1,8 +1,6 @@
 var Order = function () {
 
   this.defineProperties({
-    createdat: {type: 'datetime'},
-    completedat: {type: 'datetime'},
     count: {type: 'int'},
     status: {type: 'string'}
   });
