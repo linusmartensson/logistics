@@ -7,7 +7,7 @@ var Order = function () {
 
   this.belongsTo('Ware');
   this.belongsTo('Place');
-  this.belongsTo('Creator', {model:'User'});
+  this.belongsTo('User');
   this.belongsTo('Executor', {model:'User'});
   
 

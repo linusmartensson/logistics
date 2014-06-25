@@ -8,7 +8,7 @@ var Transaction = function () {
   this.belongsTo('Pair', {model:'Transaction'}); //Two transactions are paired together to describe a movement from one place to another.
   this.hasOne('Transaction');
   this.belongsTo('Place'); //Each transaction has a target location.
-  this.belongsTo('Creator', {model:'User'});
+  this.belongsTo('User');
 
   /*
   this.property('login', 'string', {required: true});
