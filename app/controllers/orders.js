@@ -79,12 +79,13 @@ var Orders = function () {
     var self = this;
 
     geddy.model.Order.first(params.id, function(err, order) {
+		  var ooo = order;
 			self.buildData(function(data){
-		    data.order = order;
+		    data.order = ooo;
       	if (err) {
         	throw err;
       	}
-      	if (!order) {
+      	if (!ooo) {
         	throw new geddy.errors.BadRequestError();
       	}
       	else {
