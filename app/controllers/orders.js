@@ -4,7 +4,10 @@ var Orders = function () {
   this.index = function (req, resp, params) {
     var self = this;
 
-    geddy.model.Order.all(function(err, orders) {
+		q = {};
+		o = {sort: {createdAt: 'asc'}};
+
+    geddy.model.Order.all(q, o, function(err, orders) {
       if (err) {
         throw err;
       }
@@ -15,6 +18,23 @@ var Orders = function () {
   this.add = function (req, resp, params) {
     this.respond({params: params});
   };
+
+  this.filteredList = function(req, resp, params) {
+    var self = this;
+
+		q = {};
+		o = {sort: {createdAt: 'asc'}};
+		    
+		if(params.status != undefined) q.status = params.status;
+
+
+    geddy.model.Order.all(q, o, function(err, orders) {
+			if (err) {
+				throw err;
+			}
+			self.respondWith(orders, {type:'Order']);
+  	}
+  }
 
   this.create = function (req, resp, params) {
     var self = this
