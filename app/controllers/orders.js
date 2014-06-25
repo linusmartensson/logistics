@@ -17,8 +17,8 @@ var Orders = function () {
 
   this.add = function (req, resp, params) {
 	  
-		geddy.model.Places.all(function(err, places) {
-			geddy.model.Wares.all(function(err, wares) {
+		geddy.model.Place.all(function(err, places) {
+			geddy.model.Ware.all(function(err, wares) {
   			this.respond({params: params, wares:wares, places:places});
 			});
 		});
