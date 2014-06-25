@@ -1,4 +1,4 @@
-var UpdateOrders = function () {
+var UpdateOrders2 = function () {
   this.up = function (next) {
     var tt = this;
     tt.addColumn('orders','creatorId', 'userId', function(err, data){
@@ -14,4 +14,4 @@ var UpdateOrders = function () {
   };
 };
 
-exports.UpdateOrders = UpdateOrders;
+exports.UpdateOrders2 = UpdateOrders2;
