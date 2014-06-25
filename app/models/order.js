@@ -5,10 +5,10 @@ var Order = function () {
     status: {type: 'string'}
   });
 
-  this.belongsTo('Ware');
-  this.belongsTo('Place');
-  this.belongsTo('Creator', {model:'User'});
-  this.belongsTo('Executor', {model:'User'});
+  this.hasOne('Ware');
+  this.hasOne('Place');
+  this.hasOne('Creator', {model:'User'});
+  this.hasOne('Executor', {model:'User'});
   
 
   /*
