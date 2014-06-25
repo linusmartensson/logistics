@@ -6,7 +6,7 @@ var CreateOrders = function () {
 	  t.column('place_id', 'string');
 	  t.column('ware_id', 'string');
 	  t.column('user_id', 'string');
-	  t.column('executor_id', 'string');
+	  t.column('executor_user_id', 'string');
         }
       , callback = function (err, data) {
           if (err) {
