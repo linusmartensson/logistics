@@ -6,6 +6,7 @@ var Transaction = function () {
   });
   this.hasOne('Ware'); //Each transaction considers one ware.
   this.hasOne('Pair', {model:'Transaction'}); //Two transactions are paired together to describe a movement from one place to another.
+  this.belongsTo('Transaction');
   this.hasOne('Place'); //Each transaction has a target location.
   this.hasOne('Creator', {model:'User'});
 
