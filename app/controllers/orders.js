@@ -32,36 +32,25 @@ var Orders = function () {
 		});
   };
 
-  this.filteredList = function(req, resp, params) {
-    var self = this;
-
-		q = {};
-		o = {sort: {createdAt: 'asc'}};
-		    
-		if(params.status != undefined) q.status = params.status;
-
-
-    geddy.model.Order.all(q, o, function(err, orders) {
-			if (err) {
-				throw err;
-			}
-			self.respondWith(orders, {type:'Order'});
-  	});
-  }
-
   this.create = function (req, resp, params) {
     var self = this
       , order = geddy.model.Order.create(params);
-		geddy.model.Places.all(function(err, places) {
-			geddy.model.Wares.all(function(err, wares) {
+		geddy.model.Place.all(function(err, places) {
+			geddy.model.Ware.all(function(err, wares) {
+				for(var w in places){
+					wares[w].text = wares[w].name + ", " + wares[w].orderno + ", " + wares[w].price + ", " + wares[w].packaging + ", " + wares[w].storage;
+					wares[w].value = wares[w]._id;
+				}
+			  for(var p in places){
+					places[p].text = places[p].name + ", " + places[p].location;
+					places[p].value = places[p]._id;
+				}
+				data = {order: order, wares: wares, places: places};
  	   		if (!order.isValid()) {
-				  data = {order: order, wares: wares, places: places};
  	     		this.respondWith(data);
  	   		}
  	   		else {
  	     		order.save(function(err, data) {
-						order.wares = wares;
-						order.places = places;
  	       		if (err) {
  	         		throw err;
  	       		}
