@@ -16,10 +16,10 @@ var Orders = function () {
   };
 
   this.add = function (req, resp, params) {
-	  
+	 var self = this; 
 		geddy.model.Place.all(function(err, places) {
 			geddy.model.Ware.all(function(err, wares) {
-  			this.respond({params: params, wares:wares, places:places});
+  			self.respond({params: params, wares:wares, places:places});
 			});
 		});
   };
