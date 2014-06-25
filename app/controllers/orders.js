@@ -21,11 +21,11 @@ var Orders = function () {
 			geddy.model.Ware.all(function(err, wares) {
 			  for(var w in wares){
 					wares[w].text = wares[w].name + ", " + wares[w].orderno + ", " + wares[w].price + ", " + wares[w].packaging + ", " + wares[w].storage;
-					wares[w].value = wares[w]._id;
+					wares[w].value = wares[w].id;
 				}
 			  for(var p in places){
 					places[p].text = places[p].name + ", " + places[p].location;
-					places[p].value = places[p]._id;
+					places[p].value = places[p].id;
 				}
   			next({wares:wares, places:places});
 			});
