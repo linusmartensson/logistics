@@ -39,18 +39,25 @@ var Orders = function () {
   this.create = function (req, resp, params) {
     var self = this
       , order = geddy.model.Order.create(params);
-
-    if (!order.isValid()) {
-      this.respondWith(order);
-    }
-    else {
-      order.save(function(err, data) {
-        if (err) {
-          throw err;
-        }
-        self.respondWith(order, {status: err});
-      });
-    }
+		order.places = geddy.model.Places.all(function(err, places) {
+			order.wares = geddy.model.Wares.all(function(err, wares) {
+ 	   		if (!order.isValid()) {
+					order.wares = wares;
+					order.places = places;
+ 	     		this.respondWith(order);
+ 	   		}
+ 	   		else {
+ 	     		order.save(function(err, data) {
+						order.wares = wares;
+						order.places = places;
+ 	       		if (err) {
+ 	         		throw err;
+ 	       		}
+ 	       		self.respondWith(order, {status: err});
+ 	     		});
+	    	}
+			});
+		});
   };
 
   this.show = function (req, resp, params) {

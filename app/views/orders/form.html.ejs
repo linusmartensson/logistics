@@ -17,15 +17,15 @@
   </div>
 </div>
 <div class="control-group">
-  <label for="status" class="control-label">status</label>
+  <label for="ware" class="control-label">ware</label>
   <div class="controls">
-    <%- contentTag('input', order.ware, {type:'text', class:'span6', name:'status'}) %>
+    <%- selectTag(order.wares, order.ware, {class:'span6', name:'ware'}) %>
   </div>
 </div>
 <div class="control-group">
-  <label for="status" class="control-label">status</label>
+  <label for="place" class="control-label">place</label>
   <div class="controls">
-    <%- contentTag('input', order.place, {type:'text', class:'span6', name:'status'}) %>
+    <%- selectTag(order.places, order.place, {class:'span6', name:'place'}) %>
   </div>
 </div>
 <div class="control-group">
