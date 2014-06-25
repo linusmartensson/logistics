@@ -42,9 +42,7 @@ var Orders = function () {
 		order.places = geddy.model.Places.all(function(err, places) {
 			order.wares = geddy.model.Wares.all(function(err, wares) {
  	   		if (!order.isValid()) {
-					order.wares = wares;
-					order.places = places;
- 	     		this.respondWith(order);
+ 	     		this.respondWith([order, wares, places]);
  	   		}
  	   		else {
  	     		order.save(function(err, data) {
