@@ -20,7 +20,7 @@ var Orders = function () {
 		geddy.model.Place.all(function(err, places) {
 			geddy.model.Ware.all(function(err, wares) {
 			  for(var w in places){
-					wares[w].text = wares[w].name + ", " + wares[w].orderno + ", " + wares[w].price;
+					wares[w].text = wares[w].name + ", " + wares[w].orderno + ", " + wares[w].price + ", " + wares[w].packaging + ", " + wares[w].storage;
 					wares[w].value = wares[w]._id;
 				}
 			  for(var p in places){
