@@ -8,7 +8,6 @@ var Ware = function () {
     storage: {type: 'string'},
     position: {type: 'string'}
   });
-  this.hasMany("Transactions");
 
   /*
   this.property('login', 'string', {required: true});
