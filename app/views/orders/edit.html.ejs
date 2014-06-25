@@ -12,7 +12,7 @@
       </div>
       <% } %>
 
-      <%- partial('form', {order: order}) %>
+      <%- partial('form', {order: order, wares:wares, places:places}) %>
 
       <div class="form-actions">
         <%- contentTag('input', 'Save', {type: 'submit', class: 'btn btn-primary'}) %>
