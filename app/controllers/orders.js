@@ -61,14 +61,14 @@ var Orders = function () {
 	  this.buildData(function(data){	
 				data.order = order;
  	   		if (!order.isValid()) {
- 	     		this.respondWith(data);
+ 	     		this.respond(data);
  	   		}
  	   		else {
  	     		order.save(function(err, data) {
  	       		if (err) {
  	         		throw err;
  	       		}
- 	       		self.respondWith(data, {status: err});
+ 	       		self.respond(data, {status: err});
  	     		});
 	    	}
 		});
@@ -89,7 +89,7 @@ var Orders = function () {
         	throw new geddy.errors.BadRequestError();
       	}
       	else {
-        	self.respondWith(data);
+        	self.respond(data);
       	}
 			});
     });
@@ -107,14 +107,14 @@ var Orders = function () {
 			  data.order = order;
 
       	if (!order.isValid()) {
-        	self.respondWith(data);
+        	self.respond(data);
       	}
       	else {
         	order.save(function(err, data) {
           	if (err) {
             	throw err;
           	}
-          	self.respondWith(data, {status: err});
+          	self.respond(data, {status: err});
         	});
       	}
 			});
