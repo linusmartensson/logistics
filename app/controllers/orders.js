@@ -20,8 +20,8 @@ var Orders = function () {
 		geddy.model.Places.all(function(err, places) {
 			geddy.model.Wares.all(function(err, wares) {
   			this.respond({params: params, wares:wares, places:places});
-			}
-		}
+			});
+		});
   };
 
   this.filteredList = function(req, resp, params) {
