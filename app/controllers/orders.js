@@ -16,7 +16,12 @@ var Orders = function () {
   };
 
   this.add = function (req, resp, params) {
-    this.respond({params: params});
+	  
+		geddy.model.Places.all(function(err, places) {
+			geddy.model.Wares.all(function(err, wares) {
+  			this.respond({params: params, wares:wares, places:places});
+			}
+		}
   };
 
   this.filteredList = function(req, resp, params) {
@@ -39,10 +44,11 @@ var Orders = function () {
   this.create = function (req, resp, params) {
     var self = this
       , order = geddy.model.Order.create(params);
-		order.places = geddy.model.Places.all(function(err, places) {
-			order.wares = geddy.model.Wares.all(function(err, wares) {
+		geddy.model.Places.all(function(err, places) {
+			geddy.model.Wares.all(function(err, wares) {
  	   		if (!order.isValid()) {
- 	     		this.respondWith([order, wares, places]);
+				  data = {order: order, wares: wares, places: places};
+ 	     		this.respondWith(data);
  	   		}
  	   		else {
  	     		order.save(function(err, data) {
@@ -51,7 +57,7 @@ var Orders = function () {
  	       		if (err) {
  	         		throw err;
  	       		}
- 	       		self.respondWith(order, {status: err});
+ 	       		self.respondWith(data, {status: err});
  	     		});
 	    	}
 			});
