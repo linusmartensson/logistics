@@ -33,7 +33,7 @@ var Orders = function () {
 				throw err;
 			}
 			self.respondWith(orders, {type:'Order'});
-  	}
+  	});
   }
 
   this.create = function (req, resp, params) {
