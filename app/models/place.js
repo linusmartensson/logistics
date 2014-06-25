@@ -6,8 +6,8 @@ var Place = function () {
     internal: {type: 'boolean'}
   });
 
-  this.belongsTo('Transactions');
-  this.belongsTo('Orders');
+  this.hasMany('Transactions');
+  this.hasMany('Orders');
 
   /*
   this.property('login', 'string', {required: true});

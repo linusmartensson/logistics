@@ -8,8 +8,8 @@ var Ware = function () {
     storage: {type: 'string'},
     position: {type: 'string'}
   });
-  this.belongsTo("Transactions");
-  this.belongsTo("Orders");
+  this.hasMany("Transactions");
+  this.hasMany("Orders");
 
   /*
   this.property('login', 'string', {required: true});
