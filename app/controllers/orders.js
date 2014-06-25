@@ -68,7 +68,7 @@ var Orders = function () {
  	       		if (err) {
  	         		throw err;
  	       		}
- 	       		self.respond(data, {status: err});
+ 	       		self.respondWith(order, {status: err});
  	     		});
 	    	}
 		});
@@ -114,7 +114,7 @@ var Orders = function () {
           	if (err) {
             	throw err;
           	}
-          	self.respond(data, {status: err});
+          	self.respondWith(order, {status: err});
         	});
       	}
 			});
