@@ -32,7 +32,7 @@ var Orders = function () {
 			if (err) {
 				throw err;
 			}
-			self.respondWith(orders, {type:'Order']);
+			self.respondWith(orders, {type:'Order'});
   	}
   }
 
