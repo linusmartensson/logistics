@@ -19,6 +19,14 @@ var Orders = function () {
 	 var self = this; 
 		geddy.model.Place.all(function(err, places) {
 			geddy.model.Ware.all(function(err, wares) {
+			  for(var w in places){
+					wares[w].text = wares[w].name + ", " + wares[w].orderno + ", " + wares[w].price;
+					wares[w].value = wares[w]._id;
+				}
+			  for(var p in places){
+					places[p].text = places[p].name + ", " + places[p].location;
+					places[p].value = places[p]._id;
+				}
   			self.respond({params: params, wares:wares, places:places});
 			});
 		});
