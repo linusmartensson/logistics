@@ -1,21 +1,6 @@
 var Orders = function () {
   this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
 
-  this.index = function (req, resp, params) {
-    var self = this;
-
-		q = {};
-		o = {sort: {createdAt: 'asc'}};
-
-    geddy.model.Order.all(q, o, function(err, orders) {
-      if (err) {
-        throw err;
-      }
-      self.respondWith(orders, {type:'Order'});
-    });
-  };
-
-
 	this.buildData = function(next){
 		geddy.model.Place.all(function(err, places) {
 			geddy.model.Ware.all(function(err, wares) {
@@ -30,8 +15,37 @@ var Orders = function () {
   			next({wares:wares, places:places});
 			});
 		});
+	};
 
-	}
+  this.index = function (req, resp, params) {
+    var self = this;
+
+		q = {};
+		o = {sort: {createdAt: 'asc'}};
+
+    geddy.model.Order.all(q, o, function(err, orders) {
+      if (err) {
+        throw err;
+      }
+      self.respondWith(orders, {type:'Order'});
+    });
+  };
+
+  this.show = function (req, resp, params) {
+    var self = this;
+
+    geddy.model.Order.first(params.id, function(err, order) {
+      if (err) {
+        throw err;
+      }
+      if (!order) {
+        throw new geddy.errors.NotFoundError();
+      }
+      else {
+        self.respondWith(order);
+      }
+    });
+  };
 
   this.add = function (req, resp, params) {
 		var self = this; 
@@ -60,35 +74,23 @@ var Orders = function () {
 		});
   };
 
-  this.show = function (req, resp, params) {
-    var self = this;
-
-    geddy.model.Order.first(params.id, function(err, order) {
-      if (err) {
-        throw err;
-      }
-      if (!order) {
-        throw new geddy.errors.NotFoundError();
-      }
-      else {
-        self.respondWith(order);
-      }
-    });
-  };
 
   this.edit = function (req, resp, params) {
     var self = this;
 
     geddy.model.Order.first(params.id, function(err, order) {
-      if (err) {
-        throw err;
-      }
-      if (!order) {
-        throw new geddy.errors.BadRequestError();
-      }
-      else {
-        self.respondWith(order);
-      }
+			self.buildData(function(data){
+		    data.order = order;
+      	if (err) {
+        	throw err;
+      	}
+      	if (!order) {
+        	throw new geddy.errors.BadRequestError();
+      	}
+      	else {
+        	self.respondWith(data);
+      	}
+			});
     });
   };
 
@@ -96,22 +98,25 @@ var Orders = function () {
     var self = this;
 
     geddy.model.Order.first(params.id, function(err, order) {
-      if (err) {
-        throw err;
-      }
-      order.updateProperties(params);
+			self.buildData(function(data){
+      	if (err) {
+        	throw err;
+      	}
+      	order.updateProperties(params);
+			  data.order = order;
 
-      if (!order.isValid()) {
-        self.respondWith(order);
-      }
-      else {
-        order.save(function(err, data) {
-          if (err) {
-            throw err;
-          }
-          self.respondWith(order, {status: err});
-        });
-      }
+      	if (!order.isValid()) {
+        	self.respondWith(data);
+      	}
+      	else {
+        	order.save(function(err, data) {
+          	if (err) {
+            	throw err;
+          	}
+          	self.respondWith(data, {status: err});
+        	});
+      	}
+			});
     });
   };
 
