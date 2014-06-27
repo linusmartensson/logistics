@@ -9,11 +9,11 @@
           <%- linkTo('Skafferiet', mainsPath, {class: 'brand'}) %>
           <div class="nav-collapse">
             <ul class="nav">
-              <li <%=is_current_page(mainsPath)?"class=\"active\"":""%>><%- linkTo('Hem', mainsPath) %></li>
-              <li <%=is_current_page(ordersPath)?"class=\"active\"":""%>><%- linkTo('Beställningar', ordersPath) %></li>
-              <li <%=is_current_page(waresPath)?"class=\"active\"":""%>><%- linkTo('Varor', waresPath) %></li>
-              <li <%=is_current_page(placesPath)?"class=\"active\"":""%>><%- linkTo('Platser', placesPath) %></li>
-              <li <%=is_current_page(transactionsPath)?"class=\"active\"":""%>><%- linkTo('Transaktioner', transactionsPath) %></li>
+              <li class="active"><%- linkTo('Hem', mainsPath) %></li>
+              <li><%- linkTo('Beställningar', ordersPath) %></li>
+              <li><%- linkTo('Varor', waresPath) %></li>
+              <li><%- linkTo('Platser', placesPath) %></li>
+              <li><%- linkTo('Transaktioner', transactionsPath) %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
