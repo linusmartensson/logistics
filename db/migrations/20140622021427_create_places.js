@@ -3,7 +3,7 @@ var CreatePlaces = function () {
     var def = function (t) {
           t.column('name', 'string');
           t.column('location', 'string');
-          t.column('internal', 'boolean');
+          t.column('internal', 'string');
         }
       , callback = function (err, data) {
           if (err) {
