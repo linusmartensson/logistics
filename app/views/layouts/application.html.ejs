@@ -11,7 +11,7 @@
             <ul class="nav">
               <li class="active"><%- linkTo('Hem', mainsPath) %></li>
               <li><%- linkTo(Test('Beställningar'), ordersPath) %></li>
-              <li><%- linkTo('Varor', waresPath) %></li>
+              <li><%- linkTo(urlFor(), waresPath) %></li>
               <li><%- linkTo('Platser', placesPath) %></li>
               <li><%- linkTo('Transaktioner', transactionsPath) %></li>
             </ul>
