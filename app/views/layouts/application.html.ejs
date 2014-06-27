@@ -9,11 +9,11 @@
           <%- linkTo('Skafferiet', mainsPath, {class: 'brand'}) %>
           <div class="nav-collapse">
             <ul class="nav">
-              <li <%= Peq(mainsPath) %> ><%- linkTo('Hem', mainsPath) %></li>
-              <li <%= Peq(ordersPath) %> ><%- linkTo('Beställningar', ordersPath) %></li>
-              <li <%= Peq(waresPath) %> ><%- linkTo('Varor', waresPath) %></li>
-              <li <%= Peq(placesPath) %> ><%- linkTo('Platser', placesPath) %></li>
-              <li <%= Peq(transactionsPath) %> ><%- linkTo('Transaktioner', transactionsPath) %></li>
+              <li <%- Peq(mainsPath, true) %> ><%- linkTo('Hem', mainsPath) %></li>
+              <li <%- Peq(ordersPath) %> ><%- linkTo('Beställningar', ordersPath) %></li>
+              <li <%- Peq(waresPath) %> ><%- linkTo('Varor', waresPath) %></li>
+              <li <%- Peq(placesPath) %> ><%- linkTo('Platser', placesPath) %></li>
+              <li <%- Peq(transactionsPath) %> ><%- linkTo('Transaktioner', transactionsPath) %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
