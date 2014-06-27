@@ -1,3 +1,3 @@
-module.exports = function Test(str){
+module.exports.Test = function(str){
 	return str.toUpperCase();
 };
