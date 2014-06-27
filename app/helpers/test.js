@@ -1,4 +1,4 @@
 module.exports.Peq = function(b){
- if(b == this.url) return "class=\"active\"";
+ if(this.url.startsWith(b)) return "class=\"active\"";
  return "";
 };
