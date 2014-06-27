@@ -1,3 +1,4 @@
 module.exports.Test = function(m){
-console.log(require('util').inspect(m, {showHidden:true, depth:10}));
+ console.dir(this);
+ console.di(m.request);
 };
