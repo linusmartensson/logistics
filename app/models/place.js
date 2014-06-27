@@ -3,7 +3,7 @@ var Place = function () {
   this.defineProperties({
     name: {type: 'string', required: true},
     location: {type: 'string'},
-    type: {type: 'string'}
+    group: {type: 'string'}
   });
 
   this.hasMany('Transactions');
