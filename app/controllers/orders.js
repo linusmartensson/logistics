@@ -56,8 +56,10 @@ var Orders = function () {
   };
 
   this.create = function (req, resp, params) {
+    params.state = "open";
     var self = this
       , order = geddy.model.Order.create(params);
+          
 	  this.buildData(function(data){	
 				data.order = order;
  	   		if (!order.isValid()) {

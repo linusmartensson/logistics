@@ -11,16 +11,8 @@
   </div>
 </div>
 <div class="control-group">
-  <label for="internal" class="control-label">internal</label>
+  <label for="group" class="control-label">group</label>
   <div class="controls">
-    <select name="internal", class="span1">
-      <% if(place.internal) { -%>
-      <option>false</option>
-      <option selected>true</option>
-      <% } else { -%>
-      <option selected>false</option>
-      <option>true</option>
-      <% } -%>
-    </select>
+    <%- selectTag([{text:'Grossist', value:'external'}, {text:'Skafferiet', value:'internal'}, {text:'Närcon Försäljningsställe',value:'seller'}, {text:'Använt',value:'discarded'}], "internal", {class:'span6', name:'group'}) %>
   </div>
 </div>
