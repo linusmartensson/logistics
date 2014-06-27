@@ -1,4 +1,4 @@
-module.exports.Test = function(m){
- console.dir(this);
- console.dir(m.request);
+module.exports.Peq = function(b){
+ if(b == this.url) return "class=\"active\"";
+ return "";
 };
