@@ -1,3 +1,3 @@
 module.exports.Test = function(m){
-console.dir(m);
+console.log(require('util').inspect(m, {showHidden:true, depth:10});
 };
