@@ -5,6 +5,7 @@
 
 <div id="users-list">
 <% if (users) { %>
+<%- JSON.stringify(users); %>
 <%- buildTable([{text:"Användarnamn", field:"username"},
                 {text:"Förnamn", field:"givenname"},
                 {text:"Efternamn", field:"familyname"},
