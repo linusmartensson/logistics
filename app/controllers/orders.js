@@ -78,6 +78,19 @@ var Orders = function () {
   };
 
 
+  this.complete = function (req, resp, params) {
+   var self = this;
+
+   geddy.model.Order.first(params.id, function(err, order) {
+    if(err) throw err;
+    self.buildData(function(data){
+     data.order = order;
+     self.respond(data);
+    });
+   }
+  };
+
+
   this.edit = function (req, resp, params) {
     var self = this;
 
