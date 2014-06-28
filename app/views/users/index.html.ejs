@@ -5,12 +5,9 @@
 
 <div id="users-list">
 <% if (users) { %>
-<%- buildTable([{text:"Vara", field:"name"},
-                {text:"Ordernummer", field:"orderno"},
-                {text:"Paketstorlek", field:"packaging"},
-                {text:"Pris (SEK)", field:"price"},
-                {text:"Förvaring", field:"storage"},
-                {text:"Skafferiplats", field:"position"},
-                {text:"Metadata", field:"data"}], users, userPath, "id"); %>
+<%- buildTable([{text:"Användarnamn", field:"username"},
+                {text:"Förnamn", field:"givenname"},
+                {text:"Efternamn", field:"familyname"},
+                {text:"Grupp", field:"group"}], users, userPath, "id"); %>
 <% } %>
 </div>
