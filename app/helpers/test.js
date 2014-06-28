@@ -24,6 +24,7 @@ var tableBody = function(fields, values, linkPath, linkField, actions){
   ret += "<tr>";
   for(var m=0;m<fields.length;++m){
 //         <h3><%- linkTo(wares[i].name, warePath(wares[i].id)); %></h3>
+   if(!values[v][fields[m].field]) values[v][fields[m].field] = "NULL";
 
    if(linkPath != undefined)
     ret += "<td>"+geddy.viewHelpers.linkTo(values[v][fields[m].field], linkPath(values[v][linkField]))+"</td>";
