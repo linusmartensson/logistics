@@ -17,7 +17,7 @@
               <% if(!session.get('userId')) { %>
     	        <li> <a href="<%= geddy.config.fullHostname %><%= facebookPath %>">Log in with Facebook</a> </li>
               <% } else { %>
-    	        <li><a href="#">Logged in!</a></li> 
+    	        <li>Hello <%=session.get("userGivenName")%>! <a href="#">Click here to Log out</a></li> 
               <% } %>
             </ul>
           </div><!--/.nav-collapse -->
