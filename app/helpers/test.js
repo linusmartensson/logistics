@@ -27,6 +27,7 @@ var tableBody = function(fields, values, linkPath, linkField){
   }
   ret += "</tr>";
  }
+ return ret;
 }
 
 
