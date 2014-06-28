@@ -30,10 +30,10 @@ var tableBody = function(fields, values, linkPath, linkField){
  return ret;
 }
 
-
 module.exports.buildTable = function(fields, values, linkPath, linkField){
- 
- var ret = "<table class=\"dtable\"><thead><tr>";
+ var ret = "";
+
+ ret += "<table class=\"dtables\"><thead><tr>";
  ret += tableHead(fields);
  ret += "</tr></thead><tfoot><tr>";
  ret += tableHead(fields);
@@ -41,6 +41,7 @@ module.exports.buildTable = function(fields, values, linkPath, linkField){
  ret += tableBody(fields, values, linkPath, linkField);
  ret += "</tbody></table>\n";
 
+ tableId++;
  return ret;
 
 }
