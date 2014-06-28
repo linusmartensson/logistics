@@ -1,5 +1,5 @@
 <div class="hero-unit">
-  <form id="order-form" class="form-horizontal" action="/orders/complete" method="POST">
+  <form id="order-form" class="form-horizontal" action="/orders/complete/<%=order.id%>" method="POST">
     <fieldset>
       <legend>Hantera leverans</legend>
       <% if(params.errors) { %>
