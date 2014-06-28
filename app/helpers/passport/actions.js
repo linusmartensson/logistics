@@ -73,6 +73,8 @@ var actions = new (function () {
                       }
                       // Local account's userId
                       self.session.set('userId', user.id);
+                      self.session.set('userGivenName', user.givenName);
+                      self.session.set('userFamilyName', user.familyName);
                       // Third-party auth type, e.g. 'facebook'
                       self.session.set('authType', authType);
                       // Third-party auth tokens, may include 'token', 'tokenSecret'
@@ -123,6 +125,8 @@ var actions = new (function () {
           }
 
           self.session.set('userId', user.id);
+          self.session.set('userGivenName', user.givenName);
+          self.session.set('userFamilyName', user.familyName);
           self.session.set('authType', 'local');
           // No third-party auth tokens
           self.session.set('authData', {});

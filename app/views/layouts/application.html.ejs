@@ -14,7 +14,7 @@
               <li <%- Peq(waresPath) %> ><%- linkTo('Varor', waresPath) %></li>
               <li <%- Peq(placesPath) %> ><%- linkTo('Platser', placesPath) %></li>
               <li <%- Peq(transactionsPath) %> ><%- linkTo('Transaktioner', transactionsPath) %></li>
-              <% if(!this.user) { %>
+              <% if(!this.session.get('userId')) { %>
     	        <li> <a class="btn-auth btn-facebook large" href="<%= geddy.config.fullHostname %><%= facebookPath %>">Log in with Facebook</a> </li>
               <% } else { %>
     	        <li><a href="#">Logged in!</a></li> 
