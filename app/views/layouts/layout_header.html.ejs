@@ -18,7 +18,7 @@
     <%- scriptLink('config/init.js', {type: 'text/javascript'}) %>
     
     <script type="text/javascript">
-     $(".dtables").dataTable();
+     $(document).ready(function(){$(".dtables").dataTable();});
     </script>
 
     <%- styleLink('bootstrap.min.css', {rel:'stylesheet'}) %>
