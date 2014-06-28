@@ -4,8 +4,9 @@
 </div>
 
 <div id="orders-list">
+<%- JSON.stringify(orders) %>
 <% if (orders) { %>
-<%- buildTable([{text:"Vara", field:"name"},
+<%- buildTable([{text:"Vara", field:"ware"},
                 {text:"Beställningstid", field:"createdAt"},
                 {text:"Senast uppdaterad", field:"updatedAt"},
                 {text:"Status", field:"status"},

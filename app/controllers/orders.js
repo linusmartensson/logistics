@@ -21,7 +21,7 @@ var Orders = function () {
     var self = this;
 
 		q = {status: {ne:'complete'}};
-		o = {sort: {createdAt: 'asc'}};
+		o = {sort: {createdAt: 'asc'}, includes: ['places', 'wares']};
 
     geddy.model.Order.all(q, o, function(err, orders) {
       if (err) {
