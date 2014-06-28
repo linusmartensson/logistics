@@ -46,7 +46,7 @@ router.resource('orders');
 router.match('/orders/add/place/:placeId', 'GET').to({controller: 'Orders', action: 'add'});
 
 //mark order as completed to build transactions
-router.match('/orders/:id/complete', 'POST').to({controller: 'Orders', action: 'complete'});
+router.match('/orders/complete/:id', 'POST').to({controller: 'Orders', action: 'complete'});
 
 router.get('/login').to('Main.login');
 router.get('/logout').to('Main.logout');
