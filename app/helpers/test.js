@@ -35,9 +35,9 @@ module.exports.buildTable = function(fields, values, linkPath, linkField){
  var ret = "<table class=\"dtable\"><thead><tr>";
  ret += tableHead(fields);
  ret += "</tr></thead><tfoot><tr>";
- ret += tableHead(fields, values, linkPath, linkField);
+ ret += tableHead(fields);
  ret += "</tr></tfoot><tbody>";
- 
+ ret += tableBody(fields, values, linkPath, linkField);
  ret += "</tbody></table>\n";
 
  return ret;
