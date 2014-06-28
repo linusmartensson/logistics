@@ -12,7 +12,7 @@ var tableHead = function(fields, actions){
   ret += "<th>"+fields[v].text+"</th>";
  }
  for(var v=0;v<actions.length;++v){
-  ret += "<th>"+actions[v].head?actions[v].head:"&nbsp;"+"</th>";
+  ret += "<th>"+(actions[v].head?actions[v].head:"&nbsp;")+"</th>";
  }
  return ret;
 }
