@@ -81,7 +81,7 @@ var Orders = function () {
   this.complete = function (req, resp, params) {
    var self = this;
 
-   geddy.model.Order.first(params.id, function(err, order) {
+   geddy.model.Order.first(params.id, {includes:['places']}, function(err, order) {
     if(err) throw err;
     self.buildData(function(data){
      data.order = order;
