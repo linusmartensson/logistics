@@ -4,6 +4,13 @@ module.exports.Peq = function(b, c){
  return "";
 };
 
+var getSubProp = function(obj, desc) {
+    var arr = desc.split(".");
+    while(arr.length && (obj = obj[arr.shift()]));
+    if(!obj) return "NULL";
+    return obj;
+}
+
 var tableHead = function(fields, actions){
  ret = "";
  actions = actions?actions:[];
@@ -24,12 +31,11 @@ var tableBody = function(fields, values, linkPath, linkField, actions){
   ret += "<tr>";
   for(var m=0;m<fields.length;++m){
 //         <h3><%- linkTo(wares[i].name, warePath(wares[i].id)); %></h3>
-   if(!values[v][fields[m].field]) values[v][fields[m].field] = "NULL";
 
    if(linkPath != undefined)
-    ret += "<td>"+geddy.viewHelpers.linkTo(values[v][fields[m].field], linkPath(values[v][linkField]))+"</td>";
+    ret += "<td>"+geddy.viewHelpers.linkTo(getSubProp(values[v],fields[m].field), linkPath(values[v][linkField]))+"</td>";
    else
-    ret += "<td>"+values[v][fields[m].field]+"</td>";
+    ret += "<td>"+getSubProp(values[v],fields[m].field)+"</td>";
   }
   for(var m=0;m<actions.length;++m){
     ret += "<td>"+geddy.viewHelpers.linkTo(actions[m].text,actions[m].path(values[v][linkField]))+"</td>";

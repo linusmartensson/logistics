@@ -6,10 +6,10 @@
 <div id="orders-list">
 <%- JSON.stringify(orders) %>
 <% if (orders) { %>
-<%- buildTable([{text:"Vara", field:"ware"},
+<%- buildTable([{text:"Vara", field:"ware.name"},
                 {text:"Beställningstid", field:"createdAt"},
                 {text:"Senast uppdaterad", field:"updatedAt"},
                 {text:"Status", field:"status"},
-                {text:"Beställning till", field:"place"}], orders, orderPath, "id", [{path: function(a){return "/orders/complete/"+a;}, text: "Färdigställ beställning"}]); %>
+                {text:"Beställning till", field:"place.name"}], orders, orderPath, "id", [{path: function(a){return "/orders/complete/"+a;}, text: "Markera som hanterad"}]); %>
 <% } %>
 </div>
