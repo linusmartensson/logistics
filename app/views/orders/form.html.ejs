@@ -1,18 +1,18 @@
 <div class="control-group">
   <label for="count" class="control-label">Antal</label>
   <div class="controls">
-    <%- contentTag('input', order.count, {type:'number', class:'span2', name:'count'}) %>
+    <%- contentTag('input', order.count, {tabindex:1, type:'number', class:'span2', name:'count'}) %>
   </div>
 </div>
 <div class="control-group">
   <label for="wareId" class="control-label">Vara</label>
   <div class="controls">
-    <%- selectTag(wares, order.wareId, {class:'span6', name:'wareId'}) %>
+    <%- selectTag(wares, order.wareId, {tabindex:1, class:'span6', name:'wareId'}) %>
   </div>
 </div>
 <div class="control-group">
   <label for="placeId" class="control-label">Till</label>
   <div class="controls">
-    <%- selectTag(places, order.placeId, {class:'span6', name:'placeId'}) %>
+    <%- selectTag(places, order.placeId, {tabindex:1, class:'span6', name:'placeId'}) %>
   </div>
 </div>
