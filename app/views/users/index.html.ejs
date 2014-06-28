@@ -7,8 +7,8 @@
 <% if (users) { %>
 <%- JSON.stringify(users); %>
 <%- buildTable([{text:"Användarnamn", field:"username"},
-                {text:"Förnamn", field:"givenname"},
-                {text:"Efternamn", field:"familyname"},
+                {text:"Förnamn", field:"givenName"},
+                {text:"Efternamn", field:"familyName"},
                 {text:"Grupp", field:"group"}], users, userPath, "id", []); %>
 <% } %>
 </div>
