@@ -45,7 +45,7 @@ module.exports.buildTable = function(fields, values, linkPath, linkField, action
  ret += "<table class=\"dtables\"><thead><tr>";
  ret += tableHead(fields, actions);
  ret += "</tr></thead><tfoot><tr>";
- ret += tableHead(fields);
+ ret += tableHead(fields, actions);
  ret += "</tr></tfoot><tbody>";
  ret += tableBody(fields, values, linkPath, linkField, actions);
  ret += "</tbody></table>\n";
