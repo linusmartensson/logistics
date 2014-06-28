@@ -32,12 +32,14 @@ var tableBody = function(fields, values, linkPath, linkField){
 
 module.exports.buildTable = function(fields, values, linkPath, linkField){
  
- var ret = "<table class=\"dtable\"><thead><tr>"
+ var ret = "<table class=\"dtable\"><thead><tr>";
  ret += tableHead(fields);
- ret += "</tr></thead><tfoot><tr>"
+ ret += "</tr></thead><tfoot><tr>";
  ret += tableHead(fields, values, linkPath, linkField);
- ret += "</tr></tfoot><tbody>"
+ ret += "</tr></tfoot><tbody>";
  
- ret += "</tbody></table>\n"
+ ret += "</tbody></table>\n";
+
+ return ret;
 
 }
