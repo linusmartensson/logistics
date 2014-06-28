@@ -5,27 +5,11 @@
 
 <div id="wares-list">
 <% if (wares) { %>
-<% for (var i = 0, ii = wares.length; i < ii; i++) { %>
-  <div class="row list-item" id="ware-<%= wares[i].id; %>">
-    <div class="span6">
-      <h3><%- linkTo(wares[i].name, warePath(wares[i].id)); %></h3>
-    </div>
-    <div class="span6">
-      <h3><%- linkTo(wares[i].orderno, warePath(wares[i].id)); %></h3>
-    </div>
-    <div class="span3">
-      <h4><%- linkTo(wares[i].packaging, warePath(wares[i].id)); %></h3>
-    </div>
-    <div class="span3">
-      <h4><%- linkTo(wares[i].price, warePath(wares[i].id)); %></h3>
-    </div>
-    <div class="span3">
-      <h4><%- linkTo(wares[i].storage, warePath(wares[i].id)); %></h3>
-    </div>
-    <div class="span3">
-      <h4><%- linkTo(wares[i].position, warePath(wares[i].id)); %></h3>
-    </div>
-  </div>
-<% } %>
+<%- buildTable([{text:"Vara", value:"name"},
+                {text:"Ordernummer", value:"orderno"},
+                {text:"Paketstorlek", value:"packaging"},
+                {text:"Pris (SEK)", value:"price"},
+                {text:"Förvaring", value:"storage"},
+                {text:"Skafferiplats", value:"position"}], wares, warePath, "id"); %>
 <% } %>
 </div>
