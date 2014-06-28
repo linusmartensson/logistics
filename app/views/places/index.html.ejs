@@ -7,6 +7,6 @@
 <% if (places) { %>
 <%- buildTable([{text:"Namn", field:"name"},
                 {text:"Plats", field:"location"},
-                ], places, placePath, "id", [{text:"Lägg beställning", path:orderPath}]); %>
+                ], places, placePath, "id", [{text:"Lägg beställning", path:function(a){return "/orders/add/place/"+a}}]); %>
 <% } %>
 </div>
