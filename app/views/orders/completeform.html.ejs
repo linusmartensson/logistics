@@ -5,7 +5,7 @@
   </div>
 </div>
 <div class="control-group">
-  <label for="placeId" class="control-label"><%if(places[order.placeId].group == 'external'){%>Levererat till<%}else{%>Levererat från<%}%></label>
+  <%- JSON.stringify(places); %>
   <div class="controls">
     <%- selectTag(places, null, {tabindex:1, class:'span6', name:'placeId'}) %>
   </div>
