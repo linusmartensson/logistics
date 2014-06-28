@@ -1,12 +1,24 @@
 <div class="control-group">
-  <label for="timestamp" class="control-label">timestamp</label>
+  <label for="count" class="control-label">Antal</label>
   <div class="controls">
-    <%- contentTag('input', transaction.timestamp, {type:'datetime', class:'span3', name:'timestamp'}) %>
+    <%- contentTag('input', transaction.count, {type:'number', class:'span2', name:'count'}) %>
   </div>
 </div>
 <div class="control-group">
-  <label for="count" class="control-label">count</label>
+  <label for="wareId" class="control-label">Vara</label>
   <div class="controls">
-    <%- contentTag('input', transaction.count, {type:'number', class:'span2', name:'count'}) %>
+    <%- selectTag(wares, transaction.wareId, {class:'span6', name:'wareId'}) %>
+  </div>
+</div>
+<div class="control-group">
+  <label for="placeId" class="control-label">Från</label>
+  <div class="controls">
+    <%- selectTag(places, transaction.fromLocation, {class:'span6', name:'fromLocation'}) %>
+  </div>
+</div>
+<div class="control-group">
+  <label for="placeId" class="control-label">Till</label>
+  <div class="controls">
+    <%- selectTag(places, transaction.toLocation, {class:'span6', name:'toLocation'}) %>
   </div>
 </div>

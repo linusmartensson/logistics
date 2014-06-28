@@ -20,7 +20,7 @@ var Orders = function () {
   this.index = function (req, resp, params) {
     var self = this;
 
-		q = {};
+		q = {status: {ne:'complete'}};
 		o = {sort: {createdAt: 'asc'}};
 
     geddy.model.Order.all(q, o, function(err, orders) {

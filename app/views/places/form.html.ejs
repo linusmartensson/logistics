@@ -1,18 +1,18 @@
 <div class="control-group">
-  <label for="name" class="control-label">name</label>
+  <label for="name" class="control-label">Namn</label>
   <div class="controls">
     <%- contentTag('input', place.name, {type:'text', class:'span6', name:'name'}) %>
   </div>
 </div>
 <div class="control-group">
-  <label for="location" class="control-label">location</label>
+  <label for="location" class="control-label">Plats</label>
   <div class="controls">
     <%- contentTag('input', place.location, {type:'text', class:'span6', name:'location'}) %>
   </div>
 </div>
 <div class="control-group">
-  <label for="group" class="control-label">group</label>
+  <label for="group" class="control-label">Typ</label>
   <div class="controls">
-    <%- selectTag([{text:'Grossist', value:'external'}, {text:'Skafferiet', value:'internal'}, {text:'Närcon Försäljningsställe',value:'seller'}, {text:'Använt',value:'discarded'}], "internal", {class:'span6', name:'group'}) %>
+    <%- selectTag([{text:'Externt Inköpsställe', value:'external'}, {text:'Skafferiet', value:'internal'}, {text:'Närcon Försäljningsställe',value:'seller'}, {text:'Använt',value:'discarded'}], place.group, {class:'span6', name:'group'}) %>
   </div>
 </div>

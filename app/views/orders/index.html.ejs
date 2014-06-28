@@ -6,11 +6,9 @@
 <div id="orders-list">
 <% if (orders) { %>
 <%- buildTable([{text:"Vara", field:"name"},
-                {text:"Ordernummer", field:"orderno"},
-                {text:"Paketstorlek", field:"packaging"},
-                {text:"Pris (SEK)", field:"price"},
-                {text:"Förvaring", field:"storage"},
-                {text:"Skafferiplats", field:"position"},
-                {text:"Metadata", field:"data"}], orders, orderPath, "id"); %>
+                {text:"Beställningstid", field:"createdAt"},
+                {text:"Senast uppdaterad", field:"updatedAt"},
+                {text:"Status", field:"status"},
+                {text:"Beställning till", field:"place"},], orders, orderPath, "id", [{path: "complete", text: "Färdigställ beställning"}]); %>
 <% } %>
 </div>
