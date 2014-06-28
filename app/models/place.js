@@ -2,8 +2,8 @@ var Place = function () {
 
   this.defineProperties({
     name: {type: 'string', required: true},
-    location: {type: 'string'},
-    group: {type: 'string'}
+    location: {type: 'string', required: true},
+    group: {type: 'string', required: true}
   });
 
   this.hasMany('Transactions');

@@ -5,15 +5,12 @@
 
 <div id="users-list">
 <% if (users) { %>
-<% for (var i = 0, ii = users.length; i < ii; i++) { %>
-  <div class="row list-item" id="user-<%= users[i].id; %>">
-    <div class="span8">
-      <h3><%- linkTo(users[i].id, userPath(users[i].id)); %></h3>
-    </div>
-    <div class="span4">
-      <h3><i class="icon-list-alt"></i><%= users[i].id; %></h3>
-    </div>
-  </div>
-<% } %>
+<%- buildTable([{text:"Vara", field:"name"},
+                {text:"Ordernummer", field:"orderno"},
+                {text:"Paketstorlek", field:"packaging"},
+                {text:"Pris (SEK)", field:"price"},
+                {text:"Förvaring", field:"storage"},
+                {text:"Skafferiplats", field:"position"},
+                {text:"Metadata", field:"data"}], users, userPath, "id"); %>
 <% } %>
 </div>

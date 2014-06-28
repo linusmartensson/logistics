@@ -1,8 +1,7 @@
 var Transaction = function () {
 
   this.defineProperties({
-    timestamp: {type: 'datetime'}, //Each transaction occurs at a set time.
-    count: {type: 'int'} //Each transaction covers a set number of items.
+    count: {type: 'int', required: true} //Each transaction covers a set number of items.
   });
   this.belongsTo('Ware'); //Each transaction considers one ware.
   this.belongsTo('Pair', {model:'Transaction'}); //Two transactions are paired together to describe a movement from one place to another.

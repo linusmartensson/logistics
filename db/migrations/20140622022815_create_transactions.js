@@ -1,7 +1,6 @@
 var CreateTransactions = function () {
   this.up = function (next) {
     var def = function (t) {
-          t.column('timestamp', 'datetime');
           t.column('count', 'int');
 	  t.column('place_id', 'string');
 	  t.column('ware_id', 'string');

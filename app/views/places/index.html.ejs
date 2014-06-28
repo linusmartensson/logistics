@@ -5,15 +5,9 @@
 
 <div id="places-list">
 <% if (places) { %>
-<% for (var i = 0, ii = places.length; i < ii; i++) { %>
-  <div class="row list-item" id="place-<%= places[i].id; %>">
-    <div class="span8">
-      <h3><%- linkTo(places[i].name, placePath(places[i].id)); %></h3>
-    </div>
-    <div class="span4">
-      <h3><i class="icon-list-alt"></i><%= places[i].id; %></h3>
-    </div>
-  </div>
-<% } %>
+<%- buildTable([{text:"Namn", field:"name"},
+                {text:"Plats", field:"location"},
+                {text:"Typ", field:"group"},
+                ], places, placePath, "id"); %>
 <% } %>
 </div>
