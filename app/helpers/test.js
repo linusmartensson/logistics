@@ -41,7 +41,6 @@ module.exports.buildTable = function(fields, values, linkPath, linkField){
  ret += tableBody(fields, values, linkPath, linkField);
  ret += "</tbody></table>\n";
 
- tableId++;
  return ret;
 
 }
