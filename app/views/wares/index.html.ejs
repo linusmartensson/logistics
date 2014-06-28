@@ -5,11 +5,11 @@
 
 <div id="wares-list">
 <% if (wares) { %>
-<%- buildTable([{text:"Vara", value:"name"},
-                {text:"Ordernummer", value:"orderno"},
-                {text:"Paketstorlek", value:"packaging"},
-                {text:"Pris (SEK)", value:"price"},
-                {text:"Förvaring", value:"storage"},
-                {text:"Skafferiplats", value:"position"}], wares, warePath, "id"); %>
+<%- buildTable([{text:"Vara", field:"name"},
+                {text:"Ordernummer", field:"orderno"},
+                {text:"Paketstorlek", field:"packaging"},
+                {text:"Pris (SEK)", field:"price"},
+                {text:"Förvaring", field:"storage"},
+                {text:"Skafferiplats", field:"position"}], wares, warePath, "id"); %>
 <% } %>
 </div>
