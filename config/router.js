@@ -45,7 +45,7 @@ router.resource('transactions');
 router.resource('orders');
 
 //mark order as completed to build transactions
-routers.match('/orders/:id/complete', 'POST').to({controller: 'Orders', action: 'complete'});
+router.match('/orders/:id/complete', 'POST').to({controller: 'Orders', action: 'complete'});
 
 router.get('/login').to('Main.login');
 router.get('/logout').to('Main.logout');
