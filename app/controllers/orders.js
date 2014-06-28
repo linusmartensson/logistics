@@ -87,7 +87,7 @@ var Orders = function () {
      data.order = order;
      self.respond(data);
     });
-   }
+   });
   };
 
 
