@@ -6,7 +6,8 @@ var Ware = function () {
     packaging: {type: 'string'},
     price: {type: 'number'},
     storage: {type: 'string'},
-    position: {type: 'string'}
+    position: {type: 'string'},
+    data: {type: 'string'}
   });
   this.hasMany("Transactions");
   this.hasMany("Orders");

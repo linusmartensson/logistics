@@ -7,6 +7,7 @@ var CreateWares = function () {
           t.column('price', 'number');
           t.column('storage', 'string');
           t.column('position', 'string');
+          t.column('data', 'string');
         }
       , callback = function (err, data) {
           if (err) {
