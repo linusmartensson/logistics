@@ -43,30 +43,38 @@ var Transactions = function () {
       , pto = params;
 
     pfrom.placeId = params.fromLocation;
+    delete pfrom.fromLocation;
+    delete pfrom.toLocation;
     pto.placeId = params.toLocation;
+    delete pto.fromLocation;
+    delete pto.toLocation;
+    
     pfrom.count = -pfrom.count;
 
     var transactionFrom = geddy.model.Transaction.create(pfrom)
       , transactionTo = geddy.model.Transaction.create(pto);
 
-    if (!transactionFrom.isValid() || !transactionTo.isValid()) {
-      this.respond(params);
-    }
-    else {
-      transactionFrom.save(function(err, data) {
-        if (err) {
-          throw err;
-        }
-        transactionTo.save(function(err1, data1) {
-          if (err1) {
-            geddy.model.Transaction.remove(transactionFrom.id, function(err2, data2){
-              throw err1;
-            });
+    this.buildData(function(data){
+      if (!transactionFrom.isValid() || !transactionTo.isValid()) {
+         
+        self.respond(params);
+      }
+      else {
+        transactionFrom.save(function(err, data) {
+          if (err) {
+            throw err;
           }
-          self.respondWith([transactionFrom, transactionTo], {status: err1});
+          transactionTo.save(function(err1, data1) {
+            if (err1) {
+              geddy.model.Transaction.remove(transactionFrom.id, function(err2, data2){
+                throw err1;
+              });
+            }
+            self.respondWith([transactionFrom, transactionTo], {status: err1});
+          });
         });
-      });
-    }
+      }
+    });
   };
 
   this.show = function (req, resp, params) {
