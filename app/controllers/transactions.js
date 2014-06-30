@@ -41,21 +41,8 @@ var Transactions = function () {
   this.create = function (req, resp, params) {
     var self = this;
 
-    var pfrom = params
-      , pto = params;
-
-    console.dir(params);
-    pfrom.placeId = params.fromLocation;
-    delete pfrom.fromLocation;
-    delete pfrom.toLocation;
-    pto.placeId = params.toLocation;
-    delete pto.fromLocation;
-    delete pto.toLocation;
-  
-    console.dir(params);
-    
-    pfrom.count = -pfrom.count;
-    console.dir(params);
+    var pfrom = {wareId:params.wareId, count:-params.count, placeId:params.fromLocation}
+      , pto = {wareId:params.wareId, count:params.count, placeId:params.toLocation};
 
     var transactionFrom = geddy.model.Transaction.create(pfrom)
       , transactionTo = geddy.model.Transaction.create(pto);
