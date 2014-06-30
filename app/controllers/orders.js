@@ -93,10 +93,12 @@ var Orders = function () {
    geddy.model.Order.first(params.id, function(err, order) {
 
 
+     var pfrom = {wareId:order.wareId, count:-params.count}
+       , pto = {wareId:order.wareId, count:params.count};
 
-     var pfrom = {wareId:order.wareId, count:-params.count, placeId:params.fromLocation}
-       , pto = {wareId:order.wareId, count:params.count, placeId:params.toLocation};
-     if(order.group == 'external') { //NOT correct atm.
+
+     //setup order direction based on order type.
+     if(order.group == 'pickup') {
        pfrom.placeId = order.placeId;
        pto.placeId = params.targetLocation;
      } else {
@@ -104,11 +106,17 @@ var Orders = function () {
        pto.placeId = order.placeId;
      }
 
+     //create transactions
      var transactionFrom = geddy.model.Transaction.create(pfrom)
        , transactionTo = geddy.model.Transaction.create(pto);
 
+
+     //finish order
+     order.updateParameters({status:"complete"});
+
+     //etc
      this.buildData(function(data){
-       if (!transactionFrom.isValid() || !transactionTo.isValid()) {
+       if (!transactionFrom.isValid() || !transactionTo.isValid() || !order.isValid()) {
           
          self.respond(params);
        }
@@ -123,7 +131,17 @@ var Orders = function () {
                  throw err1;
                });
              }
-             self.respondWith(transactionTo, {status: err1});
+             order.save(function(err2, data2) {
+              if (err2) {
+               geddy.model.Transaction.remove(transactionFrom.id, function(err3, data3){
+                 geddy.model.Transaction.remove(transactionTo.id, function(err4, data4){
+                   throw err2;
+                 });
+               });
+                
+              }
+              self.respondWith(transactionTo, {status: err2});
+             });
            });
          });
        }
