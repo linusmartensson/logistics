@@ -46,7 +46,7 @@ var Transactions = function () {
     pto.placeId = params.toLocation;
     pfrom.count = -pfrom.count;
 
-    var transactionFrom = geddy.model.Transaction.create(pfrom);
+    var transactionFrom = geddy.model.Transaction.create(pfrom)
       , transactionTo = geddy.model.Transaction.create(pto);
 
     if (!transactionFrom.isValid() || !transactionTo.isValid()) {
@@ -59,8 +59,9 @@ var Transactions = function () {
         }
         transactionTo.save(function(err1, data1) {
           if (err1) {
-            geddy.model.Transaction.remove(transactionFrom.id, function(err2, data2){});
-            throw err1;
+            geddy.model.Transaction.remove(transactionFrom.id, function(err2, data2){
+              throw err1;
+            });
           }
           self.respondWith([transactionFrom, transactionTo], {status: err1});
         });
