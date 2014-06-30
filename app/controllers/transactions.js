@@ -32,7 +32,7 @@ var Transactions = function () {
     var self = this;
     this.buildData(function(){
       self.respond({params: params});
-    }
+    });
   };
 
   this.create = function (req, resp, params) {
