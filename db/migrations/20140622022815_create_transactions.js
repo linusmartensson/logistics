@@ -6,6 +6,7 @@ var CreateTransactions = function () {
 	  t.column('ware_id', 'string');
 	  t.column('user_id', 'string');
 	  t.column('pair_transaction_id', 'string');
+	  t.column('transaction_id', 'string');
         }
       , callback = function (err, data) {
           if (err) {
