@@ -70,7 +70,7 @@ var Transactions = function () {
                 throw err1;
               });
             }
-            self.respondWith([transactionFrom, transactionTo], {status: err1});
+            self.respondWith(transactionTo, {status: err1});
           });
         });
       }
