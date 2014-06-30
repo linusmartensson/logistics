@@ -1,6 +1,22 @@
 var Transactions = function () {
   this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
 
+	this.buildData = function(next){
+		geddy.model.Place.all(function(err, places) {
+			geddy.model.Ware.all(function(err, wares) {
+			  for(var w in wares){
+					wares[w].text = wares[w].name + ", " + wares[w].orderno + ", " + wares[w].price + ", " + wares[w].packaging + ", " + wares[w].storage;
+					wares[w].value = wares[w].id;
+				}
+			  for(var p in places){
+					places[p].text = places[p].name + ", " + places[p].location;
+					places[p].value = places[p].id;
+				}
+  			next({wares:wares, places:places});
+			});
+		});
+	};
+
   this.index = function (req, resp, params) {
     var self = this;
 
@@ -13,7 +29,10 @@ var Transactions = function () {
   };
 
   this.add = function (req, resp, params) {
-    this.respond({params: params});
+    var self = this;
+    this.buildData(function(){
+      self.respond({params: params});
+    }
   };
 
   this.create = function (req, resp, params) {
