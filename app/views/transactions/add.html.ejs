@@ -12,7 +12,7 @@
       </div>
       <% } %>
 
-      <%- partial('form', {transaction: params}) %>
+      <%- partial('form', {transaction: params, wares: wares, places: places}) %>
 
       <div class="form-actions">
         <%- contentTag('input', 'Add', {tabindex:1, type: 'submit', class: 'btn btn-primary'}) %>
