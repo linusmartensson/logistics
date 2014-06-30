@@ -44,14 +44,18 @@ var Transactions = function () {
     var pfrom = params
       , pto = params;
 
+    console.dir(params);
     pfrom.placeId = params.fromLocation;
     delete pfrom.fromLocation;
     delete pfrom.toLocation;
     pto.placeId = params.toLocation;
     delete pto.fromLocation;
     delete pto.toLocation;
+  
+    console.dir(params);
     
     pfrom.count = -pfrom.count;
+    console.dir(params);
 
     var transactionFrom = geddy.model.Transaction.create(pfrom)
       , transactionTo = geddy.model.Transaction.create(pto);
