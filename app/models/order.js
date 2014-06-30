@@ -2,6 +2,7 @@ var Order = function () {
 
   this.defineProperties({
     count: {type: 'int'},
+    group: {type: 'string'},
     status: {type: 'string'}
   });
 

@@ -84,10 +84,52 @@ var Orders = function () {
     if(err) throw err;
     self.buildData(function(data){
      data.order = order;
-     self.redirect(data);
+     self.respond(data);
     });
    });
   };
+  this.complete = function( req, resp, params) {
+   var self = this;
+   geddy.model.Order.first(params.id, function(err, order) {
+
+
+
+     var pfrom = {wareId:order.wareId, count:-params.count, placeId:params.fromLocation}
+       , pto = {wareId:order.wareId, count:params.count, placeId:params.toLocation};
+     if(order.group == 'external') { //NOT correct atm.
+       pfrom.placeId = order.placeId;
+       pto.placeId = params.targetLocation;
+     } else {
+       pfrom.placeId = params.targetLocation;
+       pto.placeId = order.placeId;
+     }
+
+     var transactionFrom = geddy.model.Transaction.create(pfrom)
+       , transactionTo = geddy.model.Transaction.create(pto);
+
+     this.buildData(function(data){
+       if (!transactionFrom.isValid() || !transactionTo.isValid()) {
+          
+         self.respond(params);
+       }
+       else {
+         transactionFrom.save(function(err, data) {
+           if (err) {
+             throw err;
+           }
+           transactionTo.save(function(err1, data1) {
+             if (err1) {
+               geddy.model.Transaction.remove(transactionFrom.id, function(err2, data2){
+                 throw err1;
+               });
+             }
+             self.respondWith(transactionTo, {status: err1});
+           });
+         });
+       }
+     });
+   });
+  }
 
 
   this.edit = function (req, resp, params) {
