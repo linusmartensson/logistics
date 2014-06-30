@@ -30,8 +30,9 @@ var Transactions = function () {
 
   this.add = function (req, resp, params) {
     var self = this;
-    this.buildData(function(){
-      self.respond({params: params});
+    this.buildData(function(data){
+      data.params = params;
+      self.respond(data);
     });
   };
 
