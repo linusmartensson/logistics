@@ -20,7 +20,9 @@ var Transactions = function () {
   this.index = function (req, resp, params) {
     var self = this;
 
-    geddy.model.Transaction.all(function(err, transactions) {
+		q = {};
+		o = {sort: {createdAt: 'asc'}, includes: ['places', 'wares']};
+    geddy.model.Transaction.all(q,o, function(err, transactions) {
       if (err) {
         throw err;
       }
