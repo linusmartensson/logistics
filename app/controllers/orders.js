@@ -77,7 +77,7 @@ var Orders = function () {
   };
 
 
-  this.complete = function (req, resp, params) {
+  this.manage = function (req, resp, params) {
    var self = this;
 
    geddy.model.Order.first(params.id, {includes:['places']}, function(err, order) {
