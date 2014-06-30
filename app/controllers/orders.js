@@ -84,7 +84,7 @@ var Orders = function () {
     if(err) throw err;
     self.buildData(function(data){
      data.order = order;
-     self.respond(data);
+     self.redirect(data);
     });
    });
   };

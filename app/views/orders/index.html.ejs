@@ -9,6 +9,6 @@
                 {text:"Beställningstid", field:"createdAt"},
 		{text:"Antal", field:"count"},
                 {text:"Status", field:"status"},
-                {text:"Beställning till", field:"place.name"}], orders, orderPath, "id", [{path: function(a){return "/orders/complete/"+a;}, text: "Uppdatera status"}]); %>
+                {text:"Beställning till", field:"place.name"}], orders, orderPath, "id", [{path: function(a){return "/orders/manage/"+a;}, text: "Uppdatera status"}]); %>
 <% } %>
 </div>
