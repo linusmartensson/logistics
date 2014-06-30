@@ -37,18 +37,33 @@ var Transactions = function () {
   };
 
   this.create = function (req, resp, params) {
-    var self = this
-      , transaction = geddy.model.Transaction.create(params);
+    var self = this;
 
-    if (!transaction.isValid()) {
-      this.respondWith(transaction);
+    var pfrom = params
+      , pto = params;
+
+    pfrom.placeId = params.fromLocation;
+    pto.placeId = params.toLocation;
+    pfrom.count = -pfrom.count;
+
+    var transactionFrom = geddy.model.Transaction.create(pfrom);
+      , transactionTo = geddy.model.Transaction.create(pto);
+
+    if (!transactionFrom.isValid() || !transactionTo.isValid()) {
+      this.respond(params);
     }
     else {
-      transaction.save(function(err, data) {
+      transactionFrom.save(function(err, data) {
         if (err) {
           throw err;
         }
-        self.respondWith(transaction, {status: err});
+        transactionTo.save(function(err1, data1) {
+          if (err1) {
+            geddy.model.Transaction.remove(transactionFrom.id, function(err2, data2){});
+            throw err1;
+          }
+          self.respondWith([transactionFrom, transactionTo], {status: err1});
+        });
       });
     }
   };
