@@ -13,11 +13,11 @@
 <div class="control-group">
   <label for="group" class="control-label">Uppgift</label>
   <div class="controls">
-    <%- selectTag([{text:"Hämta varor", value:"pickup"},{text:"Leverera varor", value:"delivery"}], order.group, {tabindex:1, class:'span6', name:'group'}) %>
+    <%- selectTag([{text:"Hämta vara hos", value:"pickup"},{text:"Leverera vara till", value:"delivery"}], order.group, {tabindex:1, class:'span6', name:'group'}) %>
   </div>
 </div>
 <div class="control-group">
-  <label for="placeId" class="control-label">Plats</label>
+  <label for="placeId" class="control-label">&nbsp</label>
   <div class="controls">
     <%- selectTag(places, order.placeId, {tabindex:1, class:'span6', name:'placeId'}) %>
   </div>
