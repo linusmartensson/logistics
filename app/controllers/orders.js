@@ -140,7 +140,7 @@ var Orders = function () {
                });
                 
               }
-              self.respondWith(transactionTo, {status: err2});
+              self.redirect("/orders");
              });
            });
          });
