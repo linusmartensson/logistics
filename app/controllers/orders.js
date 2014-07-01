@@ -115,7 +115,7 @@ var Orders = function () {
      order.updateProperties({status:"complete"});
 
      //etc
-     this.buildData(function(data){
+     self.buildData(function(data){
        if (!transactionFrom.isValid() || !transactionTo.isValid() || !order.isValid()) {
           
          self.respond(params);
