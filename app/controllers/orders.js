@@ -112,7 +112,7 @@ var Orders = function () {
 
 
      //finish order
-     order.updateParameters({status:"complete"});
+     order.updateProperties({status:"complete"});
 
      //etc
      this.buildData(function(data){
