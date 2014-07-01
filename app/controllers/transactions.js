@@ -72,11 +72,13 @@ var Transactions = function () {
 
   this.show = function (req, resp, params) {
     var self = this;
+    console.dir(params);
 
     geddy.model.Transaction.first(params.id, function(err, transaction) {
       if (err) {
         throw err;
       }
+      console.dir(transaction);
       if (!transaction) {
         throw new geddy.errors.NotFoundError();
       }
