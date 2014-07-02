@@ -14,22 +14,21 @@ module.exports.computeWareSums = function(www, next){
 
   //Sum all transactions for each ware. Group by location type.
   for(wk=0;wk<wares.length;++wk){
+   wares[wk].groupsums = {};
+   wares[wk].placesums = {};
    var w = wares[wk];
-   w.groupsums = {};
-   w.placesums = {};
    for(tk=0;tk<w.transactions.length;++tk){
     var t = w.transactions[tk];
     
-    if(!w.placesums[t.placeId]) w.placesums[t.placeId] = 0;
-    if(!w.groupsums[pmap[t.placeId]]) w.groupsums[pmap[t.placeId]] = 0;
+    if(!wares[wk].placesums[t.placeId]) wares[wk].placesums[t.placeId] = 0;
+    if(!wares[wk].groupsums[pmap[t.placeId]]) wares[wk].groupsums[pmap[t.placeId]] = 0;
 
     //Sum each ware for each individual location
-    w.placesums[t.placeId] += t.count;
+    wares[wk].placesums[t.placeId] += t.count;
    
     //Sum each ware for each location group
-    w.groupsums[pmap[t.placeId]] += t.count;
+    wares[wk].groupsums[pmap[t.placeId]] += t.count;
    }
-   delete w.transactions;
   }
   next(wares);
  });
