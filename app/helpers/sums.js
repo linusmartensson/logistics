@@ -12,7 +12,7 @@ module.exports.computeWareSums = function(wares, next){
   }
 
   //Sum all transactions for each ware. Group by location type.
-  for(wk=0;wk<wares.length;++wk){
+  for(var wk in wares){
    wares[wk].groupsums = {};
    wares[wk].placesums = {};
    var w = wares[wk];
