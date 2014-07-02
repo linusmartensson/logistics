@@ -8,7 +8,9 @@ var Wares = function () {
       if (err) {
         throw err;
       }
-      self.respondWith(wares, {type:'Ware'});
+      geddy.viewHelpers(function(wares){
+       self.respond(wares);
+      }
     });
   };
 
