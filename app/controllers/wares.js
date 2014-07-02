@@ -8,7 +8,7 @@ var Wares = function () {
       if (err) {
         throw err;
       }
-      geddy.viewHelpers(function(wares){
+      geddy.viewHelpers.computeWareSums(function(wares){
        self.respond(wares);
       });
     });
