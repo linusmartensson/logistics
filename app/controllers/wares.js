@@ -8,8 +8,8 @@ var Wares = function () {
       if (err) {
         throw err;
       }
-      geddy.viewHelpers.computeWareSums(wares, function(res){
-       self.respond({wares:res});
+      geddy.viewHelpers.computeWareSums(wares, function(res, sums){
+       self.respond({wares:res, sums:sums});
       });
     });
   };

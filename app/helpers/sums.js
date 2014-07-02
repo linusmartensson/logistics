@@ -12,26 +12,24 @@ module.exports.computeWareSums = function(wares, next){
   }
 
   //Sum all transactions for each ware. Group by location type.
-  console.dir(wares);
-  for(var wk in wares){
-   console.log(wk+"\n");
-   wares[wk].groupsums = {};
-   wares[wk].placesums = {};
+  var sums = [];
+  for(wk=0;wk<wares.length;++wk){
+   sums[wk].groupsums = {};
+   sums[wk].placesums = {};
    var w = wares[wk];
    for(tk=0;tk<w.transactions.length;++tk){
     var t = w.transactions[tk];
     
-    if(!wares[wk].placesums[t.placeId]) wares[wk].placesums[t.placeId] = 0;
-    if(!wares[wk].groupsums[pmap[t.placeId]]) wares[wk].groupsums[pmap[t.placeId]] = 0;
+    if(!sums[wk].placesums[t.placeId]) sums[wk].placesums[t.placeId] = 0;
+    if(!sums[wk].groupsums[pmap[t.placeId]]) sums[wk].groupsums[pmap[t.placeId]] = 0;
 
     //Sum each ware for each individual location
-    wares[wk].placesums[t.placeId] += t.count;
+    sums[wk].placesums[t.placeId] += t.count;
    
     //Sum each ware for each location group
-    wares[wk].groupsums[pmap[t.placeId]] += t.count;
+    sums[wk].groupsums[pmap[t.placeId]] += t.count;
    }
   }
-  console.dir(wares);
-  next(wares);
+  next(wares, sums);
  });
 }
