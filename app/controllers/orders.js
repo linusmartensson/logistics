@@ -31,7 +31,7 @@ var Orders = function () {
     });
   };
 
-  this.unfiltered = function (req, resp, params) {
+  this.full = function (req, resp, params) {
     var self = this;
 
 		q = {};
