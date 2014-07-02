@@ -10,7 +10,7 @@ var Wares = function () {
       }
       console.dir(wares);
       geddy.viewHelpers.computeWareSums(wares, function(res){
-       self.respond(res);
+       self.respond({wares:res});
       });
     });
   };
