@@ -12,7 +12,9 @@ module.exports.computeWareSums = function(wares, next){
   }
 
   //Sum all transactions for each ware. Group by location type.
+  console.dir(wares);
   for(var wk in wares){
+   console.log(wk+"\n");
    wares[wk].groupsums = {};
    wares[wk].placesums = {};
    var w = wares[wk];
@@ -29,6 +31,7 @@ module.exports.computeWareSums = function(wares, next){
     wares[wk].groupsums[pmap[t.placeId]] += t.count;
    }
   }
+  console.dir(wares);
   next(wares);
  });
 }
