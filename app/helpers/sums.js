@@ -1,7 +1,8 @@
 
 
 //Expects wares with association loading on transactions.
-module.exports.computeWareSums = function(wares, next){
+module.exports.computeWareSums = function(www, next){
+ var wares = www;
  geddy.model.Place.all(function(err, places) {
   if(err) throw err;
   var pk, wk, tk;
@@ -31,7 +32,6 @@ module.exports.computeWareSums = function(wares, next){
    }
    delete w.transactions;
   }
+  next(wares);
  });
- next(wares);
-
 }
