@@ -43,7 +43,7 @@ router.resource('places');
 router.resource('wares');
 router.resource('transactions');
 router.resource('orders');
-router.resource('orders/unfiltered', 'GET').to({controller:'Orders', action: 'unfiltered'});
+router.match('/orders/unfiltered', 'GET').to({controller:'Orders', action: 'unfiltered'});
 router.match('/orders/add/place/:placeId', 'GET').to({controller: 'Orders', action: 'add'});
 
 //mark order as completed to build transactions
