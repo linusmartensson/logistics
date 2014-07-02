@@ -4,7 +4,7 @@ var Wares = function () {
   this.index = function (req, resp, params) {
     var self = this;
 
-    geddy.model.Ware.all(function(err, wares) {
+    geddy.model.Ware.all({includes:['transactions']},function(err, wares) {
       if (err) {
         throw err;
       }
