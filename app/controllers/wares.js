@@ -10,7 +10,7 @@ var Wares = function () {
       }
       geddy.viewHelpers(function(wares){
        self.respond(wares);
-      }
+      });
     });
   };
 
