@@ -31,6 +31,20 @@ var Orders = function () {
     });
   };
 
+  this.unfiltered = function (req, resp, params) {
+    var self = this;
+
+		q = {};
+		o = {sort: {createdAt: 'asc'}, includes: ['places', 'wares']};
+
+    geddy.model.Order.all(q, o, function(err, orders) {
+      if (err) {
+        throw err;
+      }
+      self.respondWith(orders, {type:'Order'});
+    });
+  };
+
   this.show = function (req, resp, params) {
     var self = this;
 
