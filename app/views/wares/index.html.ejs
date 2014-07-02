@@ -5,12 +5,17 @@
 
 <div id="wares-list">
 <% if (wares) { %>
+<% for(var v in wares) wares[v].groupsums = sums[v].groupsums; %>
+<% for(var v in wares) wares[v].placesums = sums[v].placesums; %>
 <%- buildTable([{text:"Vara", field:"name"},
                 {text:"Ordernummer", field:"orderno"},
                 {text:"Paketstorlek", field:"packaging"},
                 {text:"Pris (SEK)", field:"price"},
                 {text:"Förvaring", field:"storage"},
                 {text:"Skafferiplats", field:"position"},
+                {text:"Inköp", field:"groupsums.external"},
+                {text:"Lagertotal", field:"groupsums.internal"},
+                {text:"Försäljning", field:"groupsums.seller"},
                 {text:"Metadata", field:"data"}], wares, warePath, "id"); %>
 <% } %>
 </div>
