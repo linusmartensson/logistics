@@ -31,6 +31,6 @@ module.exports.computeWareSums = function(wares, next){
     sums[wk].groupsums[pmap[t.placeId]] += t.count;
    }
   }
-  next(wares, sums);
+  next(wares, sums, places);
  });
 }

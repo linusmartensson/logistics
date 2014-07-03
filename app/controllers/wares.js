@@ -8,7 +8,7 @@ var Wares = function () {
       if (err) {
         throw err;
       }
-      geddy.viewHelpers.computeWareSums(wares, function(res, sums){
+      geddy.viewHelpers.computeWareSums(wares, function(res, sums, places){
        self.respond({wares:res, sums:sums});
       });
     });
@@ -46,7 +46,9 @@ var Wares = function () {
         throw new geddy.errors.NotFoundError();
       }
       else {
-        self.respondWith(ware);
+       geddy.viewHelpers.computeWareSums(ware, function(res, sums, places){
+         self.respond({ware:res, sums:sums, places:places});
+       });
       }
     });
   };
