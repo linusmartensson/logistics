@@ -16,3 +16,20 @@
   </div>
 </div>
 <% } -%><% } -%>
+
+<div id="wares-list">
+<% if (ware) { %>
+<% for(var v in places) places[v].placesum = sums[ware.id].placesums[v]; %>
+<%- buildTable([{text:"Vara", field:"name"},
+                {text:"Ordernummer", field:"orderno"},
+                {text:"Paketstorlek", field:"packaging"},
+                {text:"Pris (SEK)", field:"price"},
+                {text:"Förvaring", field:"storage"},
+                {text:"Skafferiplats", field:"position"},
+                {text:"Metadata", field:"data"}], [ware], warePath, "id"); %>
+<%- buildTable([{text:"Namn", field:"name"},
+                {text:"Plats", field:"location"},
+                {text:"Lagerstatus", field:"placesum"}
+                ], places, placePath, "id", [{text:"Lägg beställning", path:function(a){return "/orders/add/place/"+a}}]); %>
+<% } %>
+</div>
