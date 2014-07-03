@@ -38,7 +38,7 @@ var Wares = function () {
   this.show = function (req, resp, params) {
     var self = this;
 
-    geddy.model.Ware.first(params.id, function(err, ware) {
+    geddy.model.Ware.first(params.id, {includes:['transactions']}, function(err, ware) {
       if (err) {
         throw err;
       }
