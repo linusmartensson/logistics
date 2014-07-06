@@ -100,8 +100,8 @@ var Transactions = function () {
   this.update = function (req, resp, params) {
    var self = this;
 
-   var pfrom = {wareId:params.wareId, count:-params.count, placeId:params.fromLocation}
-     , pto = {wareId:params.wareId, count:params.count, placeId:params.toLocation};
+   var pfrom = {wareId:params.wareId, count:params.count>0?-params.count:params.count, placeId:params.fromLocation}
+     , pto = {wareId:params.wareId, count:params.count>0?params.count:-params.count, placeId:params.toLocation};
    geddy.model.Transaction.first(params.id, function(err, transactionA) {
     geddy.model.Transaction.first(transactionA.pairTransactionId, function(err, transactionB) {
      if (err) throw err;
