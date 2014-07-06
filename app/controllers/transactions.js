@@ -112,7 +112,7 @@ var Transactions = function () {
       transactionA.save(function(err, data) {
        transactionB.save(function(err1, data1) {
         if (err||err1) throw err||err1;
-        self.respondWith([transactionFrom, transactionTo]);
+        self.respondWith([transactionA, transactionB]);
        });
       });
      }
