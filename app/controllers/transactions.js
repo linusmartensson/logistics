@@ -89,7 +89,7 @@ var Transactions = function () {
         data.transaction.fromLocation = transactionA.count<0?transactionA.placeId:transactionB.placeId;
         data.transaction.toLocation = transactionA.count>0?transactionA.placeId:transactionB.placeId;
         data.transaction.count = transactionA.count;
-        data.transaction.wares = transactionA.wareId;
+        data.transaction.wareId = transactionA.wareId;
         self.respond(data);
        }
       });
