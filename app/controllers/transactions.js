@@ -78,7 +78,6 @@ var Transactions = function () {
 
   this.edit = function (req, resp, params) {
     var self = this;
-
     geddy.model.Transaction.first(params.id, function(err, transactionA) {
      geddy.model.Transaction.first(transactionA.pairTransactionId, function(err, transactionB) {
       self.buildData(function(data){
@@ -112,7 +111,7 @@ var Transactions = function () {
       transactionA.save(function(err, data) {
        transactionB.save(function(err1, data1) {
         if (err||err1) throw err||err1;
-        self.respondWith([transactionA, transactionB]);
+        self.redirect('/transactions/'+transactionA.id);
        });
       });
      }
