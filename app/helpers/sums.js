@@ -18,6 +18,7 @@ module.exports.computeWareSums = function(wares, next){
    sums[wk].groupsums = {};
    sums[wk].placesums = {};
    var w = wares[wk];
+   if(!w.transactions) continue;
    for(tk=0;tk<w.transactions.length;++tk){
     var t = w.transactions[tk];
     
