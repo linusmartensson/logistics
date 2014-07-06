@@ -4,15 +4,11 @@
   <%- linkTo('Back to list', transactionPath(''), {class: 'btn pull-right'}); %>
 </div>
 
-<h2>Transaction Properties</h2>
-<% for(var i in transaction) { -%>
-<% if(i !== 'saved') { -%>
-<div class="row list-item">
-  <div class="span4">
-    <h3><%= i %></h3>
-  </div>
-  <div class="span8">
-    <h3><i class="icon-list-alt"></i><span class="<%= i %>"><%= transaction[i] %></span></h3>
-  </div>
+<div id="transactions-list">
+<% if (transactions) { %>
+<%- buildTable([{text:"Vara", field:"ware.name"},
+                {text:"Transaktionstid", field:"createdAt"},
+		{text:"Antal", field:"count"},
+                {text:"Plats", field:"place.name"}], transactions, transactionPath, "id"); %>
+<% } %>
 </div>
-<% } -%><% } -%>

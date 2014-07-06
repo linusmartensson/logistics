@@ -20,7 +20,7 @@ var Transactions = function () {
   this.index = function (req, resp, params) {
    var self = this;
    q = {};
-   o = {sort: {createdAt: 'asc'}, includes: ['places', 'wares']};
+   o = {sort: {createdAt: 'desc'}, includes: ['places', 'wares']};
    geddy.model.Transaction.all(q,o, function(err, transactions) {
     if (err) throw err;
     self.respondWith(transactions, {type:'Transaction'});
@@ -55,7 +55,7 @@ var Transactions = function () {
          geddy.model.Transaction.remove(transactionFrom.id, function(err2, data2){throw err1||err3||err2;});
          geddy.model.Transaction.remove(transactionTo.id, function(err2, data2){throw err1||err3||err2;});
         }
-        self.respondWith(transactionTo, {status: err1});
+        self.respondWith([transactionFrom, transactionTo], {status: err1});
        });
       });
      });
@@ -64,21 +64,16 @@ var Transactions = function () {
   };
 
   this.show = function (req, resp, params) {
-    var self = this;
-    console.dir(params);
-
-    geddy.model.Transaction.first(params.id, function(err, transaction) {
-      if (err) {
-        throw err;
-      }
-      console.dir(transaction);
-      if (!transaction) {
-        throw new geddy.errors.NotFoundError();
-      }
-      else {
-        self.respondWith(transaction);
-      }
+   var self = this;
+   geddy.model.Transaction.first(params.id, {includes:['places', 'wares']}, function(err, transactionA) {
+    geddy.model.Transaction.first(transactionA.pairTransactionId, {includes:['places','wares']}, function(err, transactionB) {
+     if (err) throw err;
+     if (!transactionA||!transactionB) throw new geddy.errors.NotFoundError();
+     else {
+      self.respondWith([transactionA,transactionB]);
+     }
     });
+   });
   };
 
   this.edit = function (req, resp, params) {
@@ -103,26 +98,26 @@ var Transactions = function () {
   };
 
   this.update = function (req, resp, params) {
-    var self = this;
+   var self = this;
 
-    geddy.model.Transaction.first(params.id, function(err, transaction) {
-      if (err) {
-        throw err;
-      }
-      transaction.updateProperties(params);
-
-      if (!transaction.isValid()) {
-        self.respondWith(transaction);
-      }
-      else {
-        transaction.save(function(err, data) {
-          if (err) {
-            throw err;
-          }
-          self.respondWith(transaction, {status: err});
-        });
-      }
+   var pfrom = {wareId:params.wareId, count:-params.count, placeId:params.fromLocation}
+     , pto = {wareId:params.wareId, count:params.count, placeId:params.toLocation};
+   geddy.model.Transaction.first(params.id, function(err, transactionA) {
+    geddy.model.Transaction.first(transactionA.pairTransactionId, function(err, transactionB) {
+     if (err) throw err;
+     transactionA.updateProperties(pfrom);
+     transactionA.updateProperties(pto);
+     if (!transactionA.isValid() || !transactionB.isValid()) self.respond(params);
+     else {
+      transactionA.save(function(err, data) {
+       transactionB.save(function(err1, data1) {
+        if (err||err1) throw err||err1;
+        self.respondWith([transactionFrom, transactionTo]);
+       });
+      });
+     }
     });
+   });
   };
 
   this.remove = function (req, resp, params) {
