@@ -47,6 +47,9 @@ var Transactions = function () {
     var transactionFrom = geddy.model.Transaction.create(pfrom)
       , transactionTo = geddy.model.Transaction.create(pto);
 
+    console.dir(transactionFrom);
+    console.dir(transactionTo);
+
     this.buildData(function(data){
       if (!transactionFrom.isValid() || !transactionTo.isValid()) {
          
