@@ -7,7 +7,7 @@ module.exports.Peq = function(b, c){
 var getSubProp = function(obj, desc) {
     var arr = desc.split(".");
     while(arr.length && (obj = obj[arr.shift()]));
-    if(!obj) return "NULL";
+    if(!obj) return "0";
     if(obj instanceof Date) obj = ""+obj.getFullYear() + "-" + obj.getMonth() + "-" + obj.getDate() + " " + obj.getHours() + ":" + obj.getMinutes() + ":" + obj.getSeconds();
     return obj;
 }
