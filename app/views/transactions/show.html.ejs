@@ -1,5 +1,5 @@
 <div class="hero-unit">
-  <h2 class="id"><%= transaction.id %></h2>
+  <h2 class="id"><%= params.id %></h2>
   <%- linkTo('Edit this transaction', editTransactionPath(params.id), {class: 'btn pull-right'}); %>
   <%- linkTo('Back to list', transactionPath(''), {class: 'btn pull-right'}); %>
 </div>
