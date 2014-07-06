@@ -51,12 +51,12 @@ var Transactions = function () {
       transactionTo.save(function(err1, data1) {
        transactionFrom.updateProperties({pairTransactionId:transactionTo.id});
        transactionFrom.save(function(err3, data3) {
-       if (err1||err3){
+        if (err1||err3){
          geddy.model.Transaction.remove(transactionFrom.id, function(err2, data2){throw err1||err3||err2;});
          geddy.model.Transaction.remove(transactionTo.id, function(err2, data2){throw err1||err3||err2;});
         }
         self.respondWith(transactionTo, {status: err1});
-       }
+       });
       });
      });
     }
