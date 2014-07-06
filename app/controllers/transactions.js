@@ -98,7 +98,7 @@ var Transactions = function () {
         self.respond(data);
        }
       });
-     }
+     });
     });
   };
 
