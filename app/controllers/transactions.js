@@ -47,8 +47,6 @@ var Transactions = function () {
     var transactionFrom = geddy.model.Transaction.create(pfrom)
       , transactionTo = geddy.model.Transaction.create(pto);
 
-    console.dir(transactionFrom);
-    console.dir(transactionTo);
 
     this.buildData(function(data){
       if (!transactionFrom.isValid() || !transactionTo.isValid()) {
@@ -61,6 +59,8 @@ var Transactions = function () {
             throw err;
           }
           transactionTo.save(function(err1, data1) {
+    	    console.dir(transactionFrom);
+            console.dir(transactionTo);
             if (err1) {
               geddy.model.Transaction.remove(transactionFrom.id, function(err2, data2){
                 throw err1;
