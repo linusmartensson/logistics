@@ -106,7 +106,7 @@ var Transactions = function () {
     geddy.model.Transaction.first(transactionA.pairTransactionId, function(err, transactionB) {
      if (err) throw err;
      transactionA.updateProperties(pfrom);
-     transactionA.updateProperties(pto);
+     transactionB.updateProperties(pto);
      if (!transactionA.isValid() || !transactionB.isValid()) self.respond(params);
      else {
       transactionA.save(function(err, data) {
