@@ -48,7 +48,7 @@ var Orders = function () {
   this.show = function (req, resp, params) {
     var self = this;
 
-    geddy.model.Order.first(params.id, function(err, order) {
+    geddy.model.Order.first(params.id, {includes:['places','wares']}, function(err, order) {
       if (err) {
         throw err;
       }
@@ -56,7 +56,7 @@ var Orders = function () {
         throw new geddy.errors.NotFoundError();
       }
       else {
-        self.respondWith(order);
+        self.respond({order:[order]});
       }
     });
   };

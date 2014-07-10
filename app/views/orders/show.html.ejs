@@ -4,15 +4,15 @@
   <%- linkTo('Back to list', orderPath(''), {class: 'btn pull-right'}); %>
 </div>
 
-<h2>Order Properties</h2>
-<% for(var i in order) { -%>
-<% if(i !== 'saved') { -%>
-<div class="row list-item">
-  <div class="span4">
-    <h3><%= i %></h3>
-  </div>
-  <div class="span8">
-    <h3><i class="icon-list-alt"></i><span class="<%= i %>"><%= order[i] %></span></h3>
-  </div>
+
+<div id="orders-list">
+<% if(order) { %>
+
+<%- buildTable([{text:"Vara", field:"ware.name"},
+                {text:"Beställningstid", field:"createdAt"},
+		{text:"Antal", field:"count"},
+                {text:"Status", field:"status"},
+                {text:"Beställning till", field:"place.name"}], order, orderPath, "id", [{path: function(a){return "/orders/manage/"+a;}, text: "Uppdatera status"}]); %>
+<% } %>
 </div>
-<% } -%><% } -%>
+
