@@ -7,7 +7,8 @@
 <div id="places-list">
 <% if(place) { %>
 <%- buildTable([{text:"Namn", field:"name"},
-                {text:"Plats", field:"location"}
+                {text:"Plats", field:"location"},
+                {text."Typ", field:"group"}
                 ], place, placePath, "id"); %>
 <% } %>
 </div>
