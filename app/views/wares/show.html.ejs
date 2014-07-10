@@ -4,8 +4,6 @@
   <%- linkTo('Back to list', warePath(''), {class: 'btn pull-right'}); %>
 </div>
 
-<h2>Ware Properties</h2>
-
 <div id="wares-list">
 <% if (ware) { %>
 <% for(var v in places) places[v].placesum = sums[0].placesums[places[v].id]; %>

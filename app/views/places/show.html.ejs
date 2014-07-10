@@ -4,15 +4,10 @@
   <%- linkTo('Back to list', placePath(''), {class: 'btn pull-right'}); %>
 </div>
 
-<h2>Place Properties</h2>
-<% for(var i in place) { -%>
-<% if(i !== 'saved') { -%>
-<div class="row list-item">
-  <div class="span4">
-    <h3><%= i %></h3>
-  </div>
-  <div class="span8">
-    <h3><i class="icon-list-alt"></i><span class="<%= i %>"><%= place[i] %></span></h3>
-  </div>
+<div id="places-list">
+<%- buildTable([{text:"Namn", field:"name"},
+                {text:"Plats", field:"location"},
+                ], place, placePath, "id"); %>
+<% } %>
 </div>
-<% } -%><% } -%>
+
