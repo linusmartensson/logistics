@@ -44,7 +44,7 @@ var Places = function () {
         throw new geddy.errors.NotFoundError();
       }
       else {
-        self.respondWith(place);
+        self.respond({place:[place]});
       }
     });
   };
