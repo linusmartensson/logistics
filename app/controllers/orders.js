@@ -126,7 +126,16 @@ var Orders = function () {
 
 
      //finish order
-     order.updateProperties({status:"complete"});
+     if(order.count > params.count)
+      order.updateProperties({status:"complete", count:params.count});
+     else {
+      //We couldn't fulfill the whole order, so reopen it and update the remaining order count.
+      order.updateProperties({status:"open", count:(order.count-params.count)});
+
+      //Async-save the completed order
+      var completeOrder = geddy.model.Order.create({wareId:order.wareId, count:params.count, status:"complete", group:order.group, placeId:order.placeId});
+      completeOrder.save(function(err,data){});
+     }
 
      //etc
      self.buildData(function(data){
