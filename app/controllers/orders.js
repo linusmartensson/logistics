@@ -20,7 +20,7 @@ var Orders = function () {
   this.index = function (req, resp, params) {
     var self = this;
 
-		q = {status: {ne:'complete'}};
+		q = {and:[{status: {ne:'complete'}}, {status: {ne:'complete-extra'}}]};
 		o = {sort: {createdAt: 'asc'}, includes: ['places', 'wares']};
 
     geddy.model.Order.all(q, o, function(err, orders) {
@@ -126,8 +126,15 @@ var Orders = function () {
 
 
      //finish order
-     if(order.count > params.count)
-      order.updateProperties({status:"complete", count:params.count});
+     if( params.count >= order.count)
+      order.updateProperties({status:"complete"});
+      
+      //We may have sent more than necessary.
+      if(params.count > order.count){
+       //if so, create an extra completed order to reflect that.
+       var completeOrder = geddy.model.Order.create({wareId:order.wareId, count:params.count-order.count, status:"complete-extra", group:order.group, placeId:order.placeId});
+       completeOrder.save(function(err,data){});
+      }
      else {
       //We couldn't fulfill the whole order, so reopen it and update the remaining order count.
       order.updateProperties({status:"open", count:(order.count-params.count)});
