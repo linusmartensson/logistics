@@ -16,6 +16,6 @@
                 {text:"Inköp", field:"groupsums.external"},
                 {text:"Lagertotal", field:"groupsums.internal"},
                 {text:"Försäljning", field:"groupsums.seller"},
-                {text:"Metadata", field:"data"}], wares, warePath, "id"); %>
+                {text:"Metadata", field:"data"}], wares, warePath, "id", [{text:"Lägg beställning", path:function(a){return "orders/add/ware/"+a;}}]); %>
 <% } %>
 </div>

@@ -45,6 +45,8 @@ router.resource('transactions');
 router.resource('orders');
 router.match('/allorders', 'GET').to({controller:'Orders', action:'full'});
 router.match('/orders/add/place/:placeId', 'GET').to({controller: 'Orders', action: 'add'});
+router.match('/orders/add/ware/:wareId', 'GET').to({controller: 'Orders', action: 'add'});
+router.match('/orders/add/wp/:wareId/:placeId', 'GET').to({controller: 'Orders', action: 'add'});
 
 //mark order as completed to build transactions
 router.match('/orders/manage/:id', 'GET').to({controller: 'Orders', action: 'manage'});
