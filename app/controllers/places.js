@@ -36,16 +36,15 @@ var Places = function () {
   this.show = function (req, resp, params) {
     var self = this;
 
-    geddy.model.Place.first(params.id, function(err, place) {
+    geddy.model.Wares.all({placeId:params.id}, {includes:["transactions"]}, function(err, wares) {
       if (err) {
         throw err;
       }
-      if (!place) {
-        throw new geddy.errors.NotFoundError();
-      }
-      else {
-        self.respond({place:[place]});
-      }
+      geddy.viewHelpers.computeWareSums(wares, function(res, sums, places){
+        geddy.model.Place.first(params.id, function(err, place){
+          self.respond({place:[place], wares:res, sums:sums});
+        });
+      });
     });
   };
 
