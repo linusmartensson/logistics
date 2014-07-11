@@ -4,11 +4,15 @@ module.exports.Peq = function(b, c){
  return "";
 };
 
+function pad(num, size) {
+    var s = "000000000" + num;
+    return s.substr(s.length-size);
+}
 var getSubProp = function(obj, desc) {
     var arr = desc.split(".");
     while(arr.length && (obj = obj[arr.shift()]));
     if(!obj) return "0";
-    if(obj instanceof Date) obj = ""+obj.getFullYear() + "-" + (obj.getMonth()+1) + "-" + obj.getDate() + " " + obj.getHours() + ":" + obj.getMinutes() + ":" + obj.getSeconds();
+    if(obj instanceof Date) obj = ""+pad(obj.getFullYear(),4) + "-" + pad(obj.getMonth()+1,2) + "-" + pad(obj.getDate(),2) + " " + pad(obj.getHours(),2) + ":" + pad(obj.getMinutes(),2) + ":" + pad(obj.getSeconds(),2);
     return obj;
 }
 
