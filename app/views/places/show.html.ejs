@@ -10,7 +10,7 @@
 <%- buildTable([{text:"Namn", field:"name"},
                 {text:"Plats", field:"location"},
                 {text:"Lagerstatus", field:"placesum"}
-                ], places, placePath, "id", [{text:"Lägg beställning", path:function(a){return "/orders/add/place/"+a}}]); %>
+                ], place, placePath, "id", [{text:"Lägg beställning", path:function(a){return "/orders/add/place/"+a}}]); %>
 </div>
 <div id="wares-list">
 <%- buildTable([{text:"Vara", field:"name"},
