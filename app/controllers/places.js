@@ -36,7 +36,7 @@ var Places = function () {
   this.show = function (req, resp, params) {
     var self = this;
 
-    geddy.model.Ware.all({placeId:params.id}, {includes:["transactions"]}, function(err, wares) {
+    geddy.model.Ware.all({'transactions.placeId':params.id}, {includes:["transactions"]}, function(err, wares) {
       if (err) {
         throw err;
       }
