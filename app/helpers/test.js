@@ -28,6 +28,8 @@ var tableHead = function(fields, actions){
  }
  return ret;
 }
+
+var statchartid = 0;
 var tableBody = function(fields, values, linkPath, linkField, actions){
  ret = "";
  actions = actions?actions:[];
@@ -46,11 +48,17 @@ var tableBody = function(fields, values, linkPath, linkField, actions){
     ret += "<td>"+geddy.viewHelpers.linkTo(actions[m].text,actions[m].path(values[v][linkField]))+"</td>";
   }
   ret += "</tr>";
+  ret += "<tr><td colspan="+(actions.length+fields.length)+">";
+  ret += "<div id=\"statchart"+statchartid+"\" class=\"epoch\">&nbsp;</div>"
+  ret += "<script language=\"javascript\">";
+  ret += "$('#statchart"+statchartid+"').epoch({type:'area', data:[{label:'Label 1', values:[{x:0,y:1},{x:1,y:3},{x:2,y:2}]}]"++"});";
+  ret += "</script></td></tr>";
+  statchartid++;
  }
  return ret;
 }
 
-module.exports.buildTable = function(fields, values, linkPath, linkField, actions){
+module.exports.buildTable = function(fields, values, linkPath, linkField, actions, stats){
  var ret = "";
 
  ret += "<table class=\"dtables\"><thead><tr>";
@@ -58,7 +66,7 @@ module.exports.buildTable = function(fields, values, linkPath, linkField, action
  ret += "</tr></thead><tfoot><tr>";
  ret += tableHead(fields, actions);
  ret += "</tr></tfoot><tbody>";
- ret += tableBody(fields, values, linkPath, linkField, actions);
+ ret += tableBody(fields, values, linkPath, linkField, actions, stats);
  ret += "</tbody></table>\n";
 
  return ret;
