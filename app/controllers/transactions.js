@@ -1,13 +1,10 @@
 
-var passport = require('../helpers/passport')
-  , generateHash = passport.generateHash
-  , requireAuth = passport.requireAuth
-  , requireGroup = passport.requireGroup;
 
 var Transactions = function () {
+var requireGroup = geddy.viewHelpers.requireGroup;
   this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
 
-  this.before(function(){requireGroup(['controller']);}, {});
+  this.before(requireGroup(['controller']), {});
 
   this.buildData = function(next){
    geddy.model.Place.all(function(err, places) {
