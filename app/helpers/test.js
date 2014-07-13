@@ -16,12 +16,15 @@ var getSubProp = function(obj, desc) {
     return obj;
 }
 
-var tableHead = function(fields, actions){
+var tableHead = function(fields, actions, stats){
  ret = "";
  actions = actions?actions:[];
 
  for(var v=0;v<fields.length;++v){
   ret += "<th>"+fields[v].text+"</th>";
+ }
+ if(stats){
+  ret += "<th>Lager</th>"
  }
  for(var v=0;v<actions.length;++v){
   ret += "<th>"+(actions[v].head?actions[v].head:"&nbsp;")+"</th>";
@@ -30,7 +33,7 @@ var tableHead = function(fields, actions){
 }
 
 var statchartid = 0;
-var tableBody = function(fields, values, linkPath, linkField, actions){
+var tableBody = function(fields, values, linkPath, linkField, actions, stats){
  ret = "";
  actions = actions?actions:[];
  
@@ -44,6 +47,13 @@ var tableBody = function(fields, values, linkPath, linkField, actions){
    else
     ret += "<td>"+getSubProp(values[v],fields[m].field)+"</td>";
   }
+  if(stats){
+   ret += "<td><div id=\"statchart"+statchartid+"\" style=\"margin:1em; height:200px\" class=\"epoch\">&nbsp;</div>"
+   ret += "<script language=\"javascript\">";
+   ret += "$('#statchart"+statchartid+"').epoch({type:'line', data:[{label:'Label 1', values:[{x:0,y:1},{x:30,y:200},{x:50,y:100}]}]"+""+"});";
+   ret += "</script></td>";
+   statchartid++;
+  }
   for(var m=0;m<actions.length;++m){
     ret += "<td>"+geddy.viewHelpers.linkTo(actions[m].text,actions[m].path(values[v][linkField]))+"</td>";
   }
@@ -54,20 +64,15 @@ var tableBody = function(fields, values, linkPath, linkField, actions){
 
 module.exports.buildTable = function(fields, values, linkPath, linkField, actions, stats){
  var ret = "";
-
+ stats = true;
  ret += "<table class=\"dtables\"><thead><tr>";
- ret += tableHead(fields, actions);
+ ret += tableHead(fields, actions, stats);
  ret += "</tr></thead><tfoot><tr>";
- ret += tableHead(fields, actions);
+ ret += tableHead(fields, actions, stats);
  ret += "</tr></tfoot><tbody>";
  ret += tableBody(fields, values, linkPath, linkField, actions, stats);
  ret += "</tbody></table>\n";
 
-  ret += "<div id=\"statchart"+statchartid+"\" style=\"margin:1em; height:200px\" class=\"epoch\">&nbsp;</div>"
-  ret += "<script language=\"javascript\">";
-  ret += "$('#statchart"+statchartid+"').epoch({type:'line', data:[{label:'Label 1', values:[{x:0,y:1},{x:30,y:200},{x:50,y:100}]}]"+""+"});";
-  ret += "</script>";
-  statchartid++;
  return ret;
 
 }
