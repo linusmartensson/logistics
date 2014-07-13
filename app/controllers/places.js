@@ -1,3 +1,6 @@
+
+var requireGroup = geddy.viewHelpers.requireGroup;
+
 var Places = function () {
   this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
 
