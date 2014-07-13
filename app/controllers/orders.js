@@ -1,7 +1,10 @@
 
+var passport = require('../helpers/passport')
+  , generateHash = passport.generateHash
+  , requireAuth = passport.requireAuth
+  , requireGroup = passport.requireGroup;
 
 var Orders = function () {
-var requireGroup = geddy.viewHelpers.requireGroup;
   
 this.before(function(){requireGroup(['runner', 'seller', 'controller']);}, {
     only: ['index', 'show', 'add', 'create', 'update', 'edit']

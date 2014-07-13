@@ -1,4 +1,3 @@
-
 exports.requireGroup = function (group) {
  var sgroup = this.session.get('userGroup');
  if(!sgroup || (group instanceof String && sgroup != group)) this.redirect('/');

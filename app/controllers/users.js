@@ -1,10 +1,10 @@
 var passport = require('../helpers/passport')
   , generateHash = passport.generateHash
-  , requireAuth = passport.requireAuth;
+  , requireAuth = passport.requireAuth
+  , requireGroup = passport.requireGroup;
 
 
 var Users = function () {
-var requireGroup = geddy.viewHelpers.requireGroup;
 
   // Set this to false if you don't need e-mail activation
   // for local users

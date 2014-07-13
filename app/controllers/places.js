@@ -1,7 +1,10 @@
 
+var passport = require('../helpers/passport')
+  , generateHash = passport.generateHash
+  , requireAuth = passport.requireAuth
+  , requireGroup = passport.requireGroup;
 
 var Places = function () {
-var requireGroup = geddy.viewHelpers.requireGroup;
   this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
 
   this.before(function(){requireGroup(['runner', 'seller', 'controller']);}, {
