@@ -48,7 +48,7 @@ var requireGroup = geddy.viewHelpers.requireGroup;
   this.show = function (req, resp, params) {
     var self = this;
 
-    geddy.model.Ware.first(params.id, {sort:{'transactions.createdAt':'asc'}, includes:['transactions']}, function(err, ware) {
+    geddy.model.Ware.all({'id':params.id}, {sort:{'transactions.createdAt':'asc'}, includes:['transactions']}, function(err, ware) {
       if (err) {
         throw err;
       }
@@ -56,7 +56,7 @@ var requireGroup = geddy.viewHelpers.requireGroup;
         throw new geddy.errors.NotFoundError();
       }
       else {
-       geddy.viewHelpers.computeWareSums([ware], function(res, sums, places){
+       geddy.viewHelpers.computeWareSums(ware, function(res, sums, places){
          self.respond({ware:res, sums:sums, places:places});
        });
       }
