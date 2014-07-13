@@ -63,7 +63,7 @@ module.exports.buildTable = function(fields, values, linkPath, linkField, action
  ret += tableBody(fields, values, linkPath, linkField, actions, stats);
  ret += "</tbody></table>\n";
 
-  ret += "<div id=\"statchart"+statchartid+"\" style=\"height:200px\" class=\"epoch\">&nbsp;</div>"
+  ret += "<div id=\"statchart"+statchartid+"\" style=\"margin:1em; height:200px\" class=\"epoch\">&nbsp;</div>"
   ret += "<script language=\"javascript\">";
   ret += "$('#statchart"+statchartid+"').epoch({type:'area', data:[{label:'Label 1', values:[{x:0,y:1},{x:1,y:3},{x:2,y:2}]}]"+""+"});";
   ret += "</script>";
