@@ -7,6 +7,7 @@
           <%- linkTo('Skafferiet', mainsPath, {class: 'brand'}) %>
           <div class="nav-collapse">
             <ul class="nav">
+              <li <%- Peq(mainsPath) %> ><%- linkTo('Hem', mainsPath) %></li>
               <% if(checkGroup(['seller', 'runner', 'controller'])){ %> <li <%- Peq(ordersPath) %> ><%- linkTo('Beställningar', ordersPath) %></li> <%}%>
               <% if(checkGroup(['seller', 'runner', 'controller'])){ %> <li <%- Peq(waresPath) %> ><%- linkTo('Varor', waresPath) %></li> <%}%>
               <% if(checkGroup(['seller', 'runner', 'controller'])){ %> <li <%- Peq(placesPath) %> ><%- linkTo('Platser', placesPath) %></li> <%}%>
