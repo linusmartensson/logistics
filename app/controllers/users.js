@@ -26,6 +26,9 @@ var Users = function () {
   this.before(requireAuth, {
     except: ['add', 'create', 'activate']
   });
+  this.before(function(){requireGroup(['controller']);}, {
+    except: ['add', 'create', 'activate']
+  });
 
   this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
 

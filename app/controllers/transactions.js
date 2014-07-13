@@ -1,6 +1,8 @@
 var Transactions = function () {
   this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
 
+  this.before(function(){requireGroup(['controller']);}, {});
+
   this.buildData = function(next){
    geddy.model.Place.all(function(err, places) {
     geddy.model.Ware.all(function(err, wares) {

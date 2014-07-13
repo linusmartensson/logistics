@@ -1,6 +1,13 @@
 var Wares = function () {
   this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
 
+  this.before(function(){requireGroup(['runner', 'seller', 'controller']);}, {
+    only: ['index', 'show']
+  });
+  this.before(function(){requireGroup(['controller']);}, {
+    only: ['remove', 'add', 'create', 'update', 'edit']
+  });
+
   this.index = function (req, resp, params) {
     var self = this;
 

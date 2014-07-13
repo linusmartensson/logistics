@@ -1,4 +1,12 @@
 var Orders = function () {
+  
+this.before(function(){requireGroup(['runner', 'seller', 'controller']);}, {
+    only: ['index', 'show', 'add', 'create', 'update', 'edit']
+  });
+  this.before(function(){requireGroup(['controller']);}, {
+    only: ['remove']
+  });
+
   this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
 
 	this.buildData = function(next){
