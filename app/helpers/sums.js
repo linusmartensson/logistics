@@ -47,6 +47,7 @@ module.exports.computeWareSums = function(wares, next){
 
    for(var v=0;v<places.length;++v){
     var t = places[v].id;
+    if(!sums[wk].derivs[t]) continue;
     sums[wk].derivs[t].sort(function(a,b){return a-b});
    
     //Median derivative
