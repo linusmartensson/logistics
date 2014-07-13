@@ -7,6 +7,6 @@
 <% if (users) { %>
 <%- buildTable([{text:"Förnamn", field:"givenName"},
                 {text:"Efternamn", field:"familyName"},
-                {text:"Grupp", field:"group"}], users, userPath, "id", []); %>
+                {text:"Grupp", field:"group"}], users, editUserPath, "id", []); %>
 <% } %>
 </div>
