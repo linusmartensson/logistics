@@ -1,7 +1,7 @@
 
-var requireGroup = geddy.viewHelpers.requireGroup;
 
 var Wares = function () {
+var requireGroup = geddy.viewHelpers.requireGroup;
   this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
 
   this.before(function(){requireGroup(['runner', 'seller', 'controller']);}, {

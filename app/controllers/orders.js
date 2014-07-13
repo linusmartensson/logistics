@@ -1,7 +1,7 @@
 
-var requireGroup = geddy.viewHelpers.requireGroup;
 
 var Orders = function () {
+var requireGroup = geddy.viewHelpers.requireGroup;
   
 this.before(function(){requireGroup(['runner', 'seller', 'controller']);}, {
     only: ['index', 'show', 'add', 'create', 'update', 'edit']
