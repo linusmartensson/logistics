@@ -18,7 +18,8 @@
 <div id="places-list">
 <%- buildTable([{text:"Namn", field:"name"},
                 {text:"Plats", field:"location"},
-                {text:"Lagerstatus", field:"placesum"}
+                {text:"Lagerstatus", field:"placesum"},
+                {text:"Används/ms", field:"avguse"}
                 ], places, placePath, "id", [{text:"Lägg beställning", path:function(a){return "/orders/add/wp/"+ware[0].id+"/"+a}}]); %>
 <% } %>
 </div>
