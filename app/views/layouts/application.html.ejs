@@ -13,6 +13,7 @@
               <% if(checkGroup(['seller', 'runner', 'controller'])){ %> <li <%- Peq(waresPath) %> ><%- linkTo('Varor', waresPath) %></li> <%}%>
               <% if(checkGroup(['seller', 'runner', 'controller'])){ %> <li <%- Peq(placesPath) %> ><%- linkTo('Platser', placesPath) %></li> <%}%>
               <% if(checkGroup(['controller'])){ %> <li <%- Peq(transactionsPath) %> ><%- linkTo('Transaktioner', transactionsPath) %></li> <%}%>
+              <% if(checkGroup(['controller'])){ %> <li <%- Peq(usersPath) %> ><%- linkTo('Användare', usersPath) %></li> <%}%>
               <% if(!session.get('userId')) { %>
     	        <li> <a href="<%= geddy.config.fullHostname %><%= facebookPath %>">Log in with Facebook</a> </li>
               <% } else { %>
