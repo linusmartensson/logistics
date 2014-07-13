@@ -12,16 +12,14 @@ exports.requireGroup = function (group) {
 }
 
 exports.checkGroup = function (group) {
- return function(){
-  var sgroup = this.session.get('userGroup');
-  if(!sgroup || (group instanceof String && sgroup != group)) return false;
-  else {
-   for(var v=0;v<group.length;++v){
-    if(sgroup == group[v]) return true; 
-   }
-   return false;
+ var sgroup = this.session.get('userGroup');
+ if(!sgroup || (group instanceof String && sgroup != group)) return false;
+ else {
+  for(var v=0;v<group.length;++v){
+   if(sgroup == group[v]) return true; 
   }
-  return true;
+  return false;
  }
+ return true;
 }
 
