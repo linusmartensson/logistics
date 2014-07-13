@@ -7,15 +7,18 @@
 <div id="places-list">
 <% if (wares) { %>
 <% for(var v in wares) wares[v].waresum = sums[v].placesums[place[0].id]; %>
+<% for(var v in wares) wares[v].avguse = sums[v].avguse[place[0].id]*60000; %>
+<% for(var v in wares) wares[v].estimate = sums[v].estimate[place[0].id]; %>
 <%- buildTable([{text:"Namn", field:"name"},
                 {text:"Plats", field:"location"},
-                {text:"Lagerstatus", field:"placesum"}
                 ], place, placePath, "id", [{text:"Lägg beställning", path:function(a){return "/orders/add/place/"+a}}]); %>
 </div>
 <div id="wares-list">
 <%- buildTable([{text:"Vara", field:"name"},
                 {text:"Ordernummer", field:"orderno"},
                 {text:"Lager", field:"waresum"},
+                {text:"Uppskattad lagerförändring/min", field:"avguse"},
+                {text:"Uppskattad nuvarande lagerstatus", field:"estimate"}
                 ], wares, warePath, "id", [{text:"Lägg beställning", path:function(a){return "/orders/add/wp/"+a+"/"+place[0].id}}]); %>
 <% } %>
 </div>
