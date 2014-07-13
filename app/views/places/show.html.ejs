@@ -15,11 +15,7 @@
 <div id="wares-list">
 <%- buildTable([{text:"Vara", field:"name"},
                 {text:"Ordernummer", field:"orderno"},
-                {text:"Paketstorlek", field:"packaging"},
-                {text:"Pris (SEK)", field:"price"},
-                {text:"Förvaring", field:"storage"},
-                {text:"Skafferiplats", field:"position"},
                 {text:"Lager", field:"waresum"},
-                {text:"Metadata", field:"data"}], wares, warePath, "id", [{text:"Lägg beställning", path:function(a){return "/orders/add/wp/"+a+"/"+place[0].id}}]); %>
+                ], wares, warePath, "id", [{text:"Lägg beställning", path:function(a){return "/orders/add/wp/"+a+"/"+place[0].id}}]); %>
 <% } %>
 </div>
