@@ -48,6 +48,9 @@ var Main = function () {
 
   this.logout = function (req, resp, params) {
     this.session.unset('userId');
+    this.session.unset('userGroup');
+    this.session.unset('userGivenName');
+    this.session.unset('userFamilyName');
     this.session.unset('authType');
     this.respond(params, {
       format: 'html'
