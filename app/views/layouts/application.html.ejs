@@ -8,15 +8,15 @@
           </a>
           <%- linkTo('Skafferiet', mainsPath, {class: 'brand'}) %>
           <div class="nav-collapse">
-            <ul class="nav" style="position:relative" >
+            <ul class="nav">
               <li <%- Peq(ordersPath) %> ><%- linkTo('Beställningar', ordersPath) %></li>
               <li <%- Peq(waresPath) %> ><%- linkTo('Varor', waresPath) %></li>
               <li <%- Peq(placesPath) %> ><%- linkTo('Platser', placesPath) %></li>
               <li <%- Peq(transactionsPath) %> ><%- linkTo('Transaktioner', transactionsPath) %></li>
               <% if(!session.get('userId')) { %>
-    	        <li style="right:0"> <a href="<%= geddy.config.fullHostname %><%= facebookPath %>">Log in with Facebook</a> </li>
+    	        <li> <a href="<%= geddy.config.fullHostname %><%= facebookPath %>">Log in with Facebook</a> </li>
               <% } else { %>
-    	        <li style="right:0"> <%- linkTo('Click here to Log out', logoutPath) %></li> 
+    	        <li> <%- linkTo('Click here to Log out', logoutPath) %></li> 
               <% } %>
             </ul>
           </div><!--/.nav-collapse -->
