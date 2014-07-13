@@ -36,13 +36,13 @@ module.exports.computeWareSums = function(wares, next){
 
     if(tk+1<w.transactions.length){
      var m = w.transactions[tk+1];
-     sums[wk].stddev[t.placeId] += (m.count+t.count)*(m.count+t.count)/(new Date(m.createdAt).UTC()-new Date(t.createdAt).UTC());
+     sums[wk].stddev[t.placeId] += (m.count+t.count)*(m.count+t.count)/(m.createdAt.getTime()-t.createdAt.getTime())
     }
    }
    for(var v in sums[wk].placesums){
-    if(w.transactions.length > 0){
-     sums[wk].avguse[v] = (sums[wk].placesums[v])/(new Date(w.transactions[w.transactions.length-1].createdAt).UTC() - new Date(w.transactions[0].createdAt).UTC());
-     sums[wk].stddev[v] = Math.sqrt(sums[wk].stddev[v]/(new Date(w.transactions[w.transactions.length-1].createdAt).UTC() - new Date(w.transactions[0].createdAt).UTC()));
+    if(w.transactions.length > 1) {
+     sums[wk].avguse[v] = (sums[wk].placesums[v])/(w.transactions[w.transactions.length-1].createdAt.getTime() - w.transactions[0].createdAt.getTime());
+     sums[wk].stddev[v] = Math.sqrt(sums[wk].stddev[v]/(w.transactions[w.transactions.length-1].createdAt.getTime() - w.transactions[0].createdAt.getTime()));
     }
    }
   }
