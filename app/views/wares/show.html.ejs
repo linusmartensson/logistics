@@ -7,6 +7,7 @@
 <div id="wares-list">
 <% if (ware) { %>
 <% for(var v in places) places[v].placesum = sums[0].placesums[places[v].id]; %>
+<% for(var v in places) places[v].avguse = sums[0].avguse[places[v].id]; %>
 <%- buildTable([{text:"Vara", field:"name"},
                 {text:"Ordernummer", field:"orderno"},
                 {text:"Paketstorlek", field:"packaging"},
