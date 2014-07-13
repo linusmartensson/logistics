@@ -18,7 +18,8 @@ module.exports.computeWareSums = function(wares, next){
    sums[wk].groupsums = {};
    sums[wk].placesums = {};
    sums[wk].avguse = {};
-   sums[wk].stddev = {};
+   sums[wk].derivs = {};
+   sums[wk].estimate = {};
    var w = wares[wk];
    if(!w.transactions) continue;
    
