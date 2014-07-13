@@ -45,13 +45,16 @@ module.exports.computeWareSums = function(wares, next){
     }
    }
 
-   sums[wk].derivs[t.placeId].sort(function(a,b){return a-b});
+   for(var v=0;v<places.length;++v){
+    var t = places[v].id;
+    sums[wk].derivs[t].sort(function(a,b){return a-b});
    
-   //Median derivative
-   sums[wk].avguse[t.placeId] = sums[wk].derivs[t.placeId][sums[wk].derivs[t.placeId].length/2];
-  
-   //Total amount of wares in the location minus computed derivative multiplied by time since first transaction into location.
-   sums[wk].estimate[t.placeId] = sums[wk].placesums[t.placeId] - sums[wk].avguse[t.placeId]*(new Date().getTime()-m.createdAt.getTime()-(new Date().getDate()-m.createdAt.getDate())*(1000*60*60*10));
+    //Median derivative
+    sums[wk].avguse[t] = sums[wk].derivs[t][sums[wk].derivs[t].length/2];
+   
+    //Total amount of wares in the location minus computed derivative multiplied by time since first transaction into location.
+    sums[wk].estimate[t] = sums[wk].placesums[t] - sums[wk].avguse[t]*(new Date().getTime()-m.createdAt.getTime()-(new Date().getDate()-m.createdAt.getDate())*(1000*60*60*10));
+   }
   }
   next(wares, sums, places);
  });
