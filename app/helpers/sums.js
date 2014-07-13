@@ -40,8 +40,10 @@ module.exports.computeWareSums = function(wares, next){
     }
    }
    for(var v in sums[wk].placesums){
-    sums[wk].avguse[v] = (sums[wk].placesums[v])/(new Date(w.transactions[w.transactions.length-1].createdAt).UTC() - new Date(w.transactions[0].createdAt).UTC());
-    sums[wk].stddev[v] = Math.sqrt(sums[wk].stddev[v]/(new Date(w.transactions[w.transactions.length-1].createdAt).UTC() - new Date(w.transactions[0].createdAt).UTC()));
+    if(w.transactions.length > 0){
+     sums[wk].avguse[v] = (sums[wk].placesums[v])/(new Date(w.transactions[w.transactions.length-1].createdAt).UTC() - new Date(w.transactions[0].createdAt).UTC());
+     sums[wk].stddev[v] = Math.sqrt(sums[wk].stddev[v]/(new Date(w.transactions[w.transactions.length-1].createdAt).UTC() - new Date(w.transactions[0].createdAt).UTC()));
+    }
    }
   }
   next(wares, sums, places);
