@@ -21,11 +21,14 @@ module.exports.computeWareSums = function(wares, next){
    sums[wk].stddev = {};
    var w = wares[wk];
    if(!w.transactions) continue;
+   
+   var m = w.transactions[0];
    for(tk=0;tk<w.transactions.length;++tk){
     var t = w.transactions[tk];
+    var ts = w.transactions[tk-1];
     
+    if(!sums[wk].derivs[t.placeId]) sums[wk].derivs[t.placeId] = [];
     if(!sums[wk].placesums[t.placeId]) sums[wk].placesums[t.placeId] = 0;
-    if(!sums[wk].stddev[t.placeId]) sums[wk].stddev[t.placeId] = 0;
     if(!sums[wk].groupsums[pmap[t.placeId]]) sums[wk].groupsums[pmap[t.placeId]] = 0;
 
     //Sum each ware for each individual location
@@ -34,17 +37,20 @@ module.exports.computeWareSums = function(wares, next){
     //Sum each ware for each location group
     sums[wk].groupsums[pmap[t.placeId]] += t.count;
 
-    if(tk+1<w.transactions.length){
-     var m = w.transactions[tk+1];
-     sums[wk].stddev[t.placeId] += (m.count+t.count)*(m.count+t.count)/(m.createdAt.getTime()-t.createdAt.getTime())
+    if(tk>1){
+  
+     //Warning! This is based on shops being closed an average of 10 hours, and WILL err heavily if the times cross a month boundary!
+     sums[wk].derivs[t.placeId].push(sums[wk].placesums[t.placeId]/(ts.createdAt.getTime()-m.createdAt.getTime() - (ts.createdAt.getDate()-m.createdAt.getDate())*(1000*60*60*10)));
     }
    }
-   for(var v in sums[wk].placesums){
-    if(w.transactions.length > 1) {
-     sums[wk].avguse[v] = (sums[wk].placesums[v])/(w.transactions[w.transactions.length-1].createdAt.getTime() - w.transactions[0].createdAt.getTime());
-     sums[wk].stddev[v] = Math.sqrt(sums[wk].stddev[v]/(w.transactions[w.transactions.length-1].createdAt.getTime() - w.transactions[0].createdAt.getTime()));
-    }
-   }
+
+   sums[wk].derivs[t.placeId].sort(function(a,b){return a-b});
+   
+   //Median derivative
+   sums[wk].avguse[t.placeId] = sums[wk].derivs[t.placeId][sums[wk].derivs[t.placeId].length/2];
+  
+   //Total amount of wares in the location minus computed derivative multiplied by time since first transaction into location.
+   sums[wk].estimate[t.placeId] = sums[wk].placesums[t.placeId] - sums[wk].avguse[t.placeId]*(new Date().getTime()-m.createdAt.getTime()-(new Date().getDate()-m.createdAt.getDate())*(1000*60*60*10));
   }
   next(wares, sums, places);
  });
