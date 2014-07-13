@@ -49,12 +49,6 @@ var tableBody = function(fields, values, linkPath, linkField, actions){
   }
   ret += "</tr>";
  }
-  ret += "<tr><td colspan="+(actions.length+fields.length)+">";
-  ret += "<div id=\"statchart"+statchartid+"\" class=\"epoch\">&nbsp;</div>"
-  ret += "<script language=\"javascript\">";
-  ret += "$('#statchart"+statchartid+"').epoch({type:'area', data:[{label:'Label 1', values:[{x:0,y:1},{x:1,y:3},{x:2,y:2}]}]"+""+"});";
-  ret += "</script></td></tr>";
-  statchartid++;
  return ret;
 }
 
@@ -69,6 +63,11 @@ module.exports.buildTable = function(fields, values, linkPath, linkField, action
  ret += tableBody(fields, values, linkPath, linkField, actions, stats);
  ret += "</tbody></table>\n";
 
+  ret += "<div id=\"statchart"+statchartid+"\" class=\"epoch\">&nbsp;</div>"
+  ret += "<script language=\"javascript\">";
+  ret += "$('#statchart"+statchartid+"').epoch({type:'area', data:[{label:'Label 1', values:[{x:0,y:1},{x:1,y:3},{x:2,y:2}]}]"+""+"});";
+  ret += "</script>";
+  statchartid++;
  return ret;
 
 }
