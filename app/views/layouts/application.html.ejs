@@ -14,9 +14,9 @@
               <li <%- Peq(placesPath) %> ><%- linkTo('Platser', placesPath) %></li>
               <li <%- Peq(transactionsPath) %> ><%- linkTo('Transaktioner', transactionsPath) %></li>
               <% if(!session.get('userId')) { %>
-    	        <li> <a href="<%= geddy.config.fullHostname %><%= facebookPath %>">Log in with Facebook</a> </li>
+    	        <li style="float:right"> <a href="<%= geddy.config.fullHostname %><%= facebookPath %>">Log in with Facebook</a> </li>
               <% } else { %>
-    	        <li> <%- linkTo('Click here to Log out', logoutPath) %></li> 
+    	        <li style="float:right"> <%- linkTo('Click here to Log out', logoutPath) %></li> 
               <% } %>
             </ul>
           </div><!--/.nav-collapse -->
