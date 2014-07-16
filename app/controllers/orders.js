@@ -158,7 +158,7 @@ this.before(requireGroup(['runner', 'seller', 'controller']), {
       }
  
       //etc
-      this.buildData(function(data){
+      self.buildData(function(data){
        transactionFrom.save(function(err, data) {
         if (err) throw err;
         transactionTo.updateProperties({pairTransactionId:transactionFrom.id});
