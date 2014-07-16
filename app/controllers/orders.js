@@ -156,6 +156,8 @@ this.before(requireGroup(['runner', 'seller', 'controller']), {
        var completeOrder = geddy.model.Order.create({wareId:order.wareId, count:params.count, status:"complete", group:order.group, placeId:order.placeId});
        completeOrder.save(function(err,data){});
       }
+    
+      order.save(function(err,data){});
  
       //etc
       self.buildData(function(data){
