@@ -135,12 +135,12 @@ var requireGroup = geddy.viewHelpers.requireGroup;
         throw new geddy.errors.BadRequestError();
       }
       else {
+       geddy.model.Transaction.remove(transaction.pairTransactionId, function(err) {
         geddy.model.Transaction.remove(params.id, function(err) {
-          if (err) {
-            throw err;
-          }
-          self.respondWith(transaction);
+         if (err) throw err;
+         self.respondWith(transaction);
         });
+       });
       }
     });
   };

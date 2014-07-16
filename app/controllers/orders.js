@@ -135,58 +135,46 @@ this.before(requireGroup(['runner', 'seller', 'controller']), {
      var transactionFrom = geddy.model.Transaction.create(pfrom)
        , transactionTo = geddy.model.Transaction.create(pto);
 
+     if (!transactionFrom.isValid() || !transactionTo.isValid()) self.respond(params);
+     else {
 
-     //finish order
-     if( params.count >= order.count)
-      order.updateProperties({status:"complete"});
-      
-      //We may have sent more than necessary.
-      if(params.count > order.count){
-       //if so, create an extra completed order to reflect that.
-       var completeOrder = geddy.model.Order.create({wareId:order.wareId, count:params.count-order.count, status:"complete-extra", group:order.group, placeId:order.placeId});
+      //finish order
+      if( params.count >= order.count) {
+       order.updateProperties({status:"complete"});
+       
+       //We may have sent more than necessary.
+       if(params.count > order.count){
+        //if so, create an extra completed order to reflect that.
+        var completeOrder = geddy.model.Order.create({wareId:order.wareId, count:params.count-order.count, status:"complete-extra", group:order.group, placeId:order.placeId});
+        completeOrder.save(function(err,data){});
+       }
+      } else {
+       //We couldn't fulfill the whole order, so reopen it and update the remaining order count.
+       order.updateProperties({status:"open", count:(order.count-params.count)});
+ 
+       //Async-save the completed order
+       var completeOrder = geddy.model.Order.create({wareId:order.wareId, count:params.count, status:"complete", group:order.group, placeId:order.placeId});
        completeOrder.save(function(err,data){});
       }
-     else {
-      //We couldn't fulfill the whole order, so reopen it and update the remaining order count.
-      order.updateProperties({status:"open", count:(order.count-params.count)});
-
-      //Async-save the completed order
-      var completeOrder = geddy.model.Order.create({wareId:order.wareId, count:params.count, status:"complete", group:order.group, placeId:order.placeId});
-      completeOrder.save(function(err,data){});
-     }
-
-     //etc
-     self.buildData(function(data){
-       if (!transactionFrom.isValid() || !transactionTo.isValid() || !order.isValid()) {
-          
-         self.respond(params);
-       }
-       else {
-         transactionFrom.save(function(err, data) {
-           if (err) {
-             throw err;
-           }
-           transactionTo.save(function(err1, data1) {
-             if (err1) {
-               geddy.model.Transaction.remove(transactionFrom.id, function(err2, data2){
-                 throw err1;
-               });
-             }
-             order.save(function(err2, data2) {
-              if (err2) {
-               geddy.model.Transaction.remove(transactionFrom.id, function(err3, data3){
-                 geddy.model.Transaction.remove(transactionTo.id, function(err4, data4){
-                   throw err2;
-                 });
-               });
-                
-              }
-              self.redirect("/orders");
-             });
-           });
+ 
+      //etc
+      this.buildData(function(data){
+       transactionFrom.save(function(err, data) {
+        if (err) throw err;
+        transactionTo.updateProperties({pairTransactionId:transactionFrom.id});
+        transactionTo.save(function(err1, data1) {
+         transactionFrom.updateProperties({pairTransactionId:transactionTo.id});
+         transactionFrom.save(function(err3, data3) {
+          if (err1||err3){
+           geddy.model.Transaction.remove(transactionFrom.id, function(err2, data2){throw err1||err3||err2;});
+           geddy.model.Transaction.remove(transactionTo.id, function(err2, data2){throw err1||err3||err2;});
+          }
+          self.redirect("/orders");
          });
-       }
-     });
+        });
+       });
+      });
+     }
    });
   }
 
