@@ -6,10 +6,10 @@
 
 <div id="orders-list">
 <% if (orders) { %>
-<%- buildTable([{text:"Vara", field:"ware.name"},
+<%- buildTable([{text:"Vara", field:"ware.name", link: function(a){return "/wares/"+a.wareId;}},
                 {text:"Beställningstid", field:"createdAt"},
                 {text:"Antal", field:"count"},
                 {text:"Status", field:"status"},
-                {text:"Beställning till", field:"place.name"}], orders, orderPath, "id"); %>
+                {text:"Beställning till", field:"place.name", link: function(a){return "/places/"+a.placeId;}}], orders, false, "id"); %>
 <% } %>
 </div>

@@ -5,9 +5,15 @@
 
 <div id="transactions-list">
 <% if (transactions) { %>
-<%- buildTable([{text:"Vara", field:"ware.name"},
+<%- buildTable([
+                {text:"Vara", field:"ware.name", link: function(a){return "/wares/"+a.wareId;}},
                 {text:"Transaktionstid", field:"createdAt"},
 		{text:"Antal", field:"count"},
-                {text:"Plats", field:"place.name"}], transactions, transactionPath, "id"); %>
+                {text:"Plats", field:"place.name", link: function(a){return "/places/"+a.placeId;}}
+                ], transactions, false, "id",
+                [
+                {path: function(a){return "/transactions/"+a+"/edit";}, text: "Redigera"},
+                {path: function(a){return "/transactions/remove/"+a;}, text: "Ta bort transaktion"}
+                ]); %>
 <% } %>
 </div>

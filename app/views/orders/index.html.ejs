@@ -6,11 +6,13 @@
 
 <div id="orders-list">
 <% if (orders) { %>
-<%- buildTable([{text:"Vara", field:"ware.name", link: function(a){return "/wares/"+a.wareId;}},
+<%- buildTable([
+                {text:"Vara", field:"ware.name", link: function(a){return "/wares/"+a.wareId;}},
                 {text:"Beställningstid", field:"createdAt"},
                 {text:"Antal", field:"count"},
                 {text:"Status", field:"status"},
-                {text:"Beställning till", field:"place.name", link: function(a){return "/places/"+a.placeId;}}], orders, false, "id", 
+                {text:"Beställning till", field:"place.name", link: function(a){return "/places/"+a.placeId;}}
+                ], orders, false, "id", 
                 [
                 {path: function(a){return "/orders/"+a+"/edit";}, text: "Redigera"},
                 {path: function(a){return "/orders/status/"+a;}, text: "Ta emot order", showif:function(a){return !a.userId;}},

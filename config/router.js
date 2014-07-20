@@ -55,6 +55,8 @@ router.match('/orders/reopen/:id', 'GET').to({controller: 'Orders', action: 'reo
 router.match('/orders/remove/:id', 'GET').to({controller: 'Orders', action: 'remove'});
 router.match('/orders/complete/:id', 'POST').to({controller: 'Orders', action: 'complete'});
 
+router.match('/transactions/remove/:id', 'GET').to({controller: 'Orders', action: 'remove'});
+
 router.get('/login').to('Main.login');
 router.get('/logout').to('Main.logout');
 router.post('/auth/local').to('Auth.local');
