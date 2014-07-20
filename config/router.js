@@ -50,8 +50,8 @@ router.match('/orders/add/wp/:wareId/:placeId', 'GET').to({controller: 'Orders',
 
 //mark order as completed to build transactions
 router.match('/orders/manage/:id', 'GET').to({controller: 'Orders', action: 'manage'});
-router.match('/orders/status/:id', 'GET').to({controller: 'Orders', action: 'manage'});
-router.match('/orders/reopen/:id', 'GET').to({controller: 'Orders', action: 'manage'});
+router.match('/orders/status/:id', 'GET').to({controller: 'Orders', action: 'status'});
+router.match('/orders/reopen/:id', 'GET').to({controller: 'Orders', action: 'reopen'});
 router.match('/orders/complete/:id', 'POST').to({controller: 'Orders', action: 'complete'});
 
 router.get('/login').to('Main.login');
