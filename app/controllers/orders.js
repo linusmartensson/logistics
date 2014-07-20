@@ -95,7 +95,7 @@ this.before(requireGroup(['runner', 'seller', 'controller']), {
  	       		if (err) {
  	         		throw err;
  	       		}
- 	       		self.respondWith(order, {status: err});
+                        self.redirect("/orders");
  	     		});
 	    	}
 		});
