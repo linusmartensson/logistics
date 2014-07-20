@@ -40,7 +40,7 @@ var tableBody = function(fields, values, linkPath, linkField, actions){
     ret += "<td>"+geddy.viewHelpers.linkTo(getSubProp(values[v],fields[m].field), linkPath(values[v][linkField]))+"</td>";
    else {
     if(fields[m].link){
-     ret += "<td>"+geddy.viewHelpers.linkTo(getSubProp(values[v],fields[m].field), linkPath(fields[m].link(values[v])))+"</td>";
+     ret += "<td>"+geddy.viewHelpers.linkTo(getSubProp(values[v],fields[m].field), fields[m].link(values[v]))+"</td>";
     } else 
      ret += "<td>"+getSubProp(values[v],fields[m].field)+"</td>";
    }
