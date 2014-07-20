@@ -227,6 +227,24 @@ this.before(requireGroup(['runner', 'seller', 'controller']), {
     });
   };
 
+  this.status = function (req, resp, params) {
+   var self = this;
+
+    geddy.model.Order.first(params.id, function(err, order) {
+      self.buildData(function(data){
+      	if (err) throw err;
+      	order.updateProperties({userId: self.session.get('userId')});
+      	if (!order.isValid())  self.redirect("/orders");
+      	else {
+         order.save(function(err, data) {
+         if (err) throw err;
+         self.redirect("/orders");
+        });
+       }
+      });
+    });
+  }
+
   this.remove = function (req, resp, params) {
     var self = this;
 

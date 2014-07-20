@@ -22,4 +22,3 @@ exports.checkGroup = function (group) {
  }
  return true;
 }
-

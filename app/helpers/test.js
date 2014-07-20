@@ -35,7 +35,6 @@ var tableBody = function(fields, values, linkPath, linkField, actions){
  for(var v=0;v<values.length;++v){
   ret += "<tr>";
   for(var m=0;m<fields.length;++m){
-//         <h3><%- linkTo(wares[i].name, warePath(wares[i].id)); %></h3>
 
    if(linkPath != undefined)
     ret += "<td>"+geddy.viewHelpers.linkTo(getSubProp(values[v],fields[m].field), linkPath(values[v][linkField]))+"</td>";
@@ -43,7 +42,8 @@ var tableBody = function(fields, values, linkPath, linkField, actions){
     ret += "<td>"+getSubProp(values[v],fields[m].field)+"</td>";
   }
   for(var m=0;m<actions.length;++m){
-    ret += "<td>"+geddy.viewHelpers.linkTo(actions[m].text,actions[m].path(values[v][linkField]))+"</td>";
+    if(!actions[m].showif || actions[m].showif(values[v])) ret += "<td>"+geddy.viewHelpers.linkTo(actions[m].text,actions[m].path(values[v][linkField]))+"</td>";
+    else ret += "<td>&nbsp</td>";
   }
   ret += "</tr>";
  }
