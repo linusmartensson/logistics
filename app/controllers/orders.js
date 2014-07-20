@@ -237,13 +237,13 @@ this.before(requireGroup(['runner', 'seller', 'controller']), {
       	if (!order.isValid())  self.redirect("/orders");
       	else {
          order.save(function(err, data) {
-         if (err) throw err;
-         self.redirect("/orders");
-        });
-       }
+          if (err) throw err;
+          self.redirect("/orders");
+         });
+        }
       });
     });
-  }
+  };
 
   this.remove = function (req, resp, params) {
     var self = this;
