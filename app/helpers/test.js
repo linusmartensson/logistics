@@ -36,7 +36,7 @@ var tableBody = function(fields, values, linkPath, linkField, actions){
   ret += "<tr>";
   for(var m=0;m<fields.length;++m){
 
-   if(linkPath != undefined)
+   if(linkPath)
     ret += "<td>"+geddy.viewHelpers.linkTo(getSubProp(values[v],fields[m].field), linkPath(values[v][linkField]))+"</td>";
    else {
     if(fields[m].link){
