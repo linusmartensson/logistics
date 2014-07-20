@@ -233,7 +233,24 @@ this.before(requireGroup(['runner', 'seller', 'controller']), {
     geddy.model.Order.first(params.id, function(err, order) {
       self.buildData(function(data){
       	if (err) throw err;
-      	order.updateProperties({userId: self.session.get('userId')});
+      	order.updateProperties({status:"inprogress", userId: self.session.get('userId')});
+      	if (!order.isValid())  self.redirect("/orders");
+      	else {
+         order.save(function(err, data) {
+          if (err) throw err;
+          self.redirect("/orders");
+         });
+        }
+      });
+    });
+  };
+  this.reopen = function (req, resp, params) {
+   var self = this;
+
+    geddy.model.Order.first(params.id, function(err, order) {
+      self.buildData(function(data){
+      	if (err) throw err;
+      	order.updateProperties({status:"open", userId: ""});
       	if (!order.isValid())  self.redirect("/orders");
       	else {
          order.save(function(err, data) {

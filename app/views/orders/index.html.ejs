@@ -14,6 +14,7 @@
                 [
                 {path: function(a){return "/orders/"+a+"/edit";}, text: "Redigera"},
                 {path: function(a){return "/orders/status/"+a;}, text: "Ta emot order", showif:function(a){return !a.userId;}},
+                {path: function(a){return "/orders/reopen/"+a;}, text: "Håll order", showif:function(a){return a.userId;}},
                 {path: function(a){return "/orders/manage/"+a;}, text: "Färdigställ", showif:function(a){return a.userId;}},
                 {path: function(a){return "/orders/"+a+"/remove";}, text: "Avbeställ"}
                 ]); %>
