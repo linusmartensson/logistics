@@ -38,8 +38,12 @@ var tableBody = function(fields, values, linkPath, linkField, actions){
 
    if(linkPath != undefined)
     ret += "<td>"+geddy.viewHelpers.linkTo(getSubProp(values[v],fields[m].field), linkPath(values[v][linkField]))+"</td>";
-   else
-    ret += "<td>"+getSubProp(values[v],fields[m].field)+"</td>";
+   else {
+    if(fields[m].link){
+     ret += "<td>"+geddy.viewHelpers.linkTo(getSubProp(values[v],fields[m].field), linkPath(fields[m].link(values[v])))+"</td>";
+    } else 
+     ret += "<td>"+getSubProp(values[v],fields[m].field)+"</td>";
+   }
   }
   for(var m=0;m<actions.length;++m){
     if(!actions[m].showif || actions[m].showif(values[v])) ret += "<td>"+geddy.viewHelpers.linkTo(actions[m].text,actions[m].path(values[v][linkField]))+"</td>";
